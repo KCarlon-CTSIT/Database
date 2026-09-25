@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `ultimau5_atilive` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `ultimau5_atilive`;
 -- MySQL dump 10.13  Distrib 8.0.46, for Win64 (x86_64)
 --
 -- Host: 192.168.1.85    Database: ultimau5_atilive
@@ -934,6 +936,26 @@ CREATE TABLE `IMG` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `IMGApproval`
+--
+
+DROP TABLE IF EXISTS `IMGApproval`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `IMGApproval` (
+  `imageID` int NOT NULL AUTO_INCREMENT,
+  `DocNum` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `SourceID` int DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `image` longblob,
+  `path` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`imageID`),
+  KEY `IMG_Approval_FK_001_idx` (`SourceID`),
+  CONSTRAINT `IMG_Approval_FK_001` FOREIGN KEY (`SourceID`) REFERENCES `OWTM` (`WtmCode`)
+) ENGINE=InnoDB AUTO_INCREMENT=2696 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `IMGDR`
 --
 
@@ -989,7 +1011,7 @@ CREATE TABLE `IMGPO` (
   `image` longblob,
   `path` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`imageID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2633 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2698 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5013,7 +5035,7 @@ CREATE TABLE `OPOR` (
   KEY `FK_OPOR_TO_OCRD_CardCode03ZPU` (`CardCode`),
   KEY `UserSign` (`UserSign`),
   CONSTRAINT `OPOR_ibfk_1` FOREIGN KEY (`UserSign`) REFERENCES `USER` (`USER_ID`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1067 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1112 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7649,7 +7671,7 @@ CREATE TABLE `OWDD` (
   CONSTRAINT `OWDD_ibfk_2` FOREIGN KEY (`UserSign`) REFERENCES `USER` (`USER_ID`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `OWDD_ibfk_3` FOREIGN KEY (`OwnerID`) REFERENCES `USER` (`USER_ID`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `OWDD_ibfk_4` FOREIGN KEY (`CurrStep`) REFERENCES `OWST` (`WstCode`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1848 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1893 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8602,11 +8624,12 @@ CREATE TABLE `POR1` (
   `PcQuantity` decimal(19,6) DEFAULT NULL,
   `LinManClsd` char(1) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `VatGrpSrc` char(1) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `SubText` varchar(255) COLLATE utf8mb3_unicode_ci DEFAULT NULL COMMENT 'This is for additional text for P.O. Item for Sub Con clients',
   PRIMARY KEY (`DocID`),
   KEY `FK_POR1_TO_OPOR_DocEntryAYJqQ` (`DocEntry`),
   KEY `ItemCode` (`ItemCode`),
   CONSTRAINT `FK_POR1_TO_OPOR_DocEntryAYJqQ` FOREIGN KEY (`DocEntry`) REFERENCES `OPOR` (`DocEntry`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=1530 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1585 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -10507,9 +10530,8 @@ CREATE TABLE `WDD1` (
   KEY `Status` (`Status`),
   CONSTRAINT `WDD1_ibfk_2` FOREIGN KEY (`WddCode`) REFERENCES `OWDD` (`WddCode`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `WDD1_ibfk_3` FOREIGN KEY (`Status`) REFERENCES `OCLA` (`name`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8751 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8826 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-ALTER DATABASE `ultimau5_atilive` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -10536,6 +10558,9 @@ DELIMITER ;;
         -- Logic for Re-opening (W)
         ELSEIF NEW.Status = 'W' THEN
             CALL sp_SyncHeaderAndDoc_Force(NEW.WddCode, 'W');
+            
+		 ELSEIF NEW.Status = 'R' THEN
+            CALL sp_SyncHeaderAndDoc_Force(NEW.WddCode, 'R');
         END IF;
         
     END IF;
@@ -10545,7 +10570,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `ultimau5_atilive` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
 
 --
 -- Table structure for table `WST1`
@@ -10563,7 +10587,7 @@ CREATE TABLE `WST1` (
   KEY `UserID` (`UserID`),
   CONSTRAINT `WST1_ibfk_1` FOREIGN KEY (`WstCode`) REFERENCES `OWST` (`WstCode`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `WST1_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `USER` (`USER_ID`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -10582,7 +10606,7 @@ CREATE TABLE `WTM1` (
   KEY `UserID` (`UserID`),
   CONSTRAINT `WTM1_ibfk_1` FOREIGN KEY (`WtmCode`) REFERENCES `OWTM` (`WtmCode`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `WTM1_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `USER` (`USER_ID`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=162 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -11121,7 +11145,7 @@ CREATE TABLE `po_approval_comments` (
   PRIMARY KEY (`id`),
   KEY `idx_po_doc_entry` (`po_doc_entry`),
   KEY `idx_wdd_code` (`wdd_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -11470,7 +11494,6 @@ DELIMITER ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 ALTER DATABASE `ultimau5_atilive` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `GetContactInfo` */;
-ALTER DATABASE `ultimau5_atilive` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -11490,7 +11513,10 @@ BEGIN
         OCRD.CardName, 
         OCRD.CardType, 
         OCRD.Address, 
-        OCRD.CntctPrsn, 
+        OCRD.CntctPrsn,
+        OCPR.Tel1,
+                OCPR.Tel2,
+        OCPR.E_MailL,
         OCPR.CntctCode, 
         OCPR.Name AS ContactName, 
         OCRD.LicTradNum, 
@@ -11527,7 +11553,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `ultimau5_atilive` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `GetCustomerSalesOrdersByItem` */;
 ALTER DATABASE `ultimau5_atilive` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -12522,13 +12547,15 @@ CREATE DEFINER=`ultimau5_jvmacuh`@`%` PROCEDURE `GetPOWithPendingApprovalStatus`
 BEGIN
     SELECT 
         OPOR.DocEntry,
-        OPOR.DocNum, 
-        OPOR.DocDate, 
-        OPOR.CardCode, 
-        OCRD.CardName,  
-        OPOR.DocTotal, 
+        OPOR.DocNum,
+        OPOR.DocDate,
+        OPOR.CardCode,
+        OCRD.CardName,
+        OPOR.DocTotal,
         CONCAT(creator.FNAME, ' ', creator.LNAME) AS 'CreatedBy',
         ow.WddCode AS 'ApprovalID',
+        
+        -- Overall Document Status
         CASE 
             WHEN ow.Status = 'W' THEN 'Pending'
             WHEN ow.Status = 'Y' THEN 'Approved'
@@ -12536,36 +12563,53 @@ BEGIN
             WHEN ow.Status = 'R' THEN 'Request'
             ELSE 'Not Required'
         END AS 'ApprovalStatusLabel',
+        
+        -- Current Logged-in User's Line Decision
+        user_wdd.Status AS 'MyDecisionStatus',
+
         (SELECT COUNT(*) FROM WDD1 WHERE WddCode = ow.WddCode) AS 'RequiredApprovers',
         (SELECT COUNT(*) FROM WDD1 WHERE WddCode = ow.WddCode AND Status = 'Y') AS 'ApprovalsReceived',
         
-        -- Keeps the comma-separated list of all pending approvers for UI display
         (SELECT GROUP_CONCAT(CONCAT(u.FNAME, ' ', u.LNAME) SEPARATOR ', ')
          FROM WDD1 w1
          INNER JOIN USER u ON w1.UserID = u.USER_ID
          WHERE w1.WddCode = ow.WddCode 
            AND w1.Status != 'Y') AS 'PendingApprovers',
-           
+
         ow.Remarks AS 'ApprovalRemarks',
         OPOR.DocStatus
     FROM OPOR 
     INNER JOIN OCRD ON OCRD.CardCode = OPOR.CardCode
     LEFT JOIN USER creator ON OPOR.UserSign = creator.USER_ID
     LEFT JOIN OWDD ow ON OPOR.DocEntry = ow.DocEntry AND ow.ObjType = '2'
+    -- Join ONLY the current user's line to determine their view
+    INNER JOIN WDD1 user_wdd ON ow.WddCode = user_wdd.WddCode AND user_wdd.UserID = p_UserID
     WHERE 
-        (
-            p_WddStatus IS NULL 
-            OR p_WddStatus = '' 
-            OR p_WddStatus = 'All' 
-            OR ow.Status = p_WddStatus
+        -- 1. All records for this approver
+        (p_WddStatus IS NULL OR p_WddStatus = '' OR p_WddStatus = 'All')
+
+        -- 2. Pending Filter: PO is only "Pending" for this user IF their own status is still 'W'
+        OR (
+            (p_WddStatus = 'W' OR p_WddStatus = 'Pending') 
+            AND user_wdd.Status = 'W'
         )
-        -- NEW: Mandates that the logged-in user is actively waiting to approve this specific document
-        AND EXISTS (
-            SELECT 1 
-            FROM WDD1 w_filter 
-            WHERE w_filter.WddCode = ow.WddCode 
-              AND w_filter.UserID = p_UserID 
-              AND w_filter.Status != 'Y'
+
+        -- 3. Approved Filter: PO is "Approved" for this user if their own status is 'Y'
+        OR (
+            (p_WddStatus = 'Y' OR p_WddStatus = 'Approved') 
+            AND user_wdd.Status = 'Y'
+        )
+
+        -- 4. Request Filter: PO is in "Request" for this user ONLY IF their own status is 'R'
+        OR (
+            (p_WddStatus = 'R' OR p_WddStatus = 'Request') 
+            AND user_wdd.Status = 'R'
+        )
+
+        -- 5. Rejected Filter: PO is "Rejected" if user rejected it or header was killed
+        OR (
+            (p_WddStatus = 'N' OR p_WddStatus = 'Rejected') 
+            AND (user_wdd.Status = 'N' OR ow.Status = 'N')
         )
     ORDER BY OPOR.DocEntry DESC;
 END ;;
@@ -12623,7 +12667,9 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`ultimau5_jvmacuh`@`%` PROCEDURE `GetPurchaseOrdersWithApprovalStatus`(IN p_WddStatus VARCHAR(3))
+CREATE DEFINER=`ultimau5_jvmacuh`@`%` PROCEDURE `GetPurchaseOrdersWithApprovalStatus`(
+    IN p_WddStatus VARCHAR(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin
+)
 BEGIN
     SELECT 
         OPOR.DocEntry,
@@ -12634,20 +12680,27 @@ BEGIN
         OPOR.DocTotal, 
         CONCAT(creator.FNAME, ' ', creator.LNAME) AS 'CreatedBy',
         ow.WddCode AS 'ApprovalID',
+        
+        -- Global Document Approval Status
         CASE 
-            WHEN ow.Status = 'W' THEN 'Pending'
-            WHEN ow.Status = 'Y' THEN 'Approved'
-            WHEN ow.Status = 'N' THEN 'Rejected'
-            WHEN ow.Status = 'R' THEN 'Request'
+            WHEN CAST(COALESCE(ow.Status, OPOR.WddStatus) AS CHAR) = 'W' THEN 'Pending'
+            WHEN CAST(COALESCE(ow.Status, OPOR.WddStatus) AS CHAR) = 'Y' THEN 'Approved'
+            WHEN CAST(COALESCE(ow.Status, OPOR.WddStatus) AS CHAR) = 'N' THEN 'Rejected'
+            WHEN CAST(COALESCE(ow.Status, OPOR.WddStatus) AS CHAR) = 'R' THEN 'Request'
             ELSE 'Not Required'
         END AS 'ApprovalStatusLabel',
-        (SELECT COUNT(*) FROM WDD1 WHERE WddCode = ow.WddCode) AS 'RequiredApprovers',
-        (SELECT COUNT(*) FROM WDD1 WHERE WddCode = ow.WddCode AND Status = 'Y') AS 'ApprovalsReceived',
+
+        -- Threshold & Progress Metrics
+        COALESCE(ow.MaxReqr, (SELECT COUNT(*) FROM WDD1 WHERE WddCode = ow.WddCode), 1) AS 'RequiredApprovers',
+        (SELECT COUNT(*) FROM WDD1 WHERE WddCode = ow.WddCode AND CAST(Status AS CHAR) = 'Y') AS 'ApprovalsReceived',
+        
+        -- Pending Approvers List
         (SELECT GROUP_CONCAT(CONCAT(u.FNAME, ' ', u.LNAME) SEPARATOR ', ')
          FROM WDD1 w1
          INNER JOIN USER u ON w1.UserID = u.USER_ID
          WHERE w1.WddCode = ow.WddCode 
-           AND w1.Status != 'Y') AS 'PendingApprovers',
+           AND CAST(w1.Status AS CHAR) != 'Y') AS 'PendingApprovers',
+
         ow.Remarks AS 'ApprovalRemarks',
         OPOR.DocStatus
     FROM OPOR 
@@ -12655,12 +12708,31 @@ BEGIN
     LEFT JOIN USER creator ON OPOR.UserSign = creator.USER_ID
     LEFT JOIN OWDD ow ON OPOR.DocEntry = ow.DocEntry AND ow.ObjType = '2'
     WHERE 
-        -- Simplified logic: removed explicit COLLATE to avoid charset conflicts
-        (
-            p_WddStatus IS NULL 
-            OR p_WddStatus = '' 
-            OR p_WddStatus = 'All' 
-            OR ow.Status = p_WddStatus
+        -- 1. All Documents
+        (p_WddStatus IS NULL OR p_WddStatus = '' OR p_WddStatus = 'All')
+
+        -- 2. Pending (Global header is 'W')
+        OR (
+            (p_WddStatus = 'W' OR p_WddStatus = 'Pending') 
+            AND CAST(COALESCE(ow.Status, OPOR.WddStatus) AS CHAR) = 'W'
+        )
+
+        -- 3. Approved (Global header is 'Y')
+        OR (
+            (p_WddStatus = 'Y' OR p_WddStatus = 'Approved') 
+            AND CAST(COALESCE(ow.Status, OPOR.WddStatus) AS CHAR) = 'Y'
+        )
+
+        -- 4. Rejected (Global header is 'N')
+        OR (
+            (p_WddStatus = 'N' OR p_WddStatus = 'Rejected') 
+            AND CAST(COALESCE(ow.Status, OPOR.WddStatus) AS CHAR) = 'N'
+        )
+
+        -- 5. Request / Clarification (Global header is 'R')
+        OR (
+            (p_WddStatus = 'R' OR p_WddStatus = 'Request') 
+            AND CAST(COALESCE(ow.Status, OPOR.WddStatus) AS CHAR) = 'R'
         )
     ORDER BY OPOR.DocEntry DESC;
 END ;;
@@ -14332,38 +14404,115 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`ultimau5_jvmacuh`@`%` PROCEDURE `sp_SyncHeaderAndDoc`(IN p_WddCode INT)
 BEGIN
-    DECLARE v_ApprovedCount INT;
+    DECLARE v_ApprovedCount INT DEFAULT 0;
+    DECLARE v_TotalAssigned INT DEFAULT 0;
+    DECLARE v_PendingCount INT DEFAULT 0;
+    DECLARE v_MaxReqr INT DEFAULT 1;
     DECLARE v_DocEntry INT;
     DECLARE v_DocStatus TINYINT(1);
 
-    -- 1. Count 'Y' statuses in WDD1 (Safe to read, just not update)
-    SELECT COUNT(*) INTO v_ApprovedCount
+    -- 1. Check approval counts in WDD1
+    SELECT 
+        COUNT(CASE WHEN Status = 'Y' THEN 1 END),
+        COUNT(*),
+        COUNT(CASE WHEN Status != 'Y' THEN 1 END)
+    INTO 
+        v_ApprovedCount,
+        v_TotalAssigned,
+        v_PendingCount
     FROM WDD1
-    WHERE WddCode = p_WddCode AND Status = 'Y';
+    WHERE WddCode = p_WddCode;
 
-    -- 2. Get DocEntry and Check if PO is Open
-    SELECT a.DocEntry, b.DocStatus 
-    INTO v_DocEntry, v_DocStatus
+    -- 2. Retrieve MaxReqr from OWST (fallback to OWDD.MaxReqr or total lines)
+    SELECT 
+        COALESCE(st.MaxReqr, a.MaxReqr, v_TotalAssigned, 1),
+        a.DocEntry, 
+        b.DocStatus 
+    INTO 
+        v_MaxReqr,
+        v_DocEntry, 
+        v_DocStatus
     FROM OWDD a
+    LEFT JOIN OWST st ON a.CurrStep = st.WstCode
     INNER JOIN OPOR b ON a.DocEntry = b.DocEntry
     WHERE a.WddCode = p_WddCode
     LIMIT 1;
 
-    -- 3. If 2 or more 'Y' values are found AND the PO is Open (0)
-    IF v_ApprovedCount >= 2 AND v_DocStatus = 0 THEN
+    -- 3. ONLY approve if:
+    --    - Approved count meets or exceeds MaxReqr
+    --    - NO pending lines remain (v_PendingCount = 0), OR you strictly require all assigned approvers
+    --    - The PO is still open (DocStatus = 0)
+    IF v_ApprovedCount >= v_MaxReqr 
+       AND v_PendingCount = 0 
+       AND v_TotalAssigned > 0 
+       AND v_DocStatus = 0 THEN
         
-        -- Update the OWDD Header Status to 'Y'
+        -- Mark Header Approved
         UPDATE OWDD 
         SET Status = 'Y' 
         WHERE WddCode = p_WddCode;
 
-        -- Update the OPOR table status
+        -- Mark PO Document Approved
         IF v_DocEntry IS NOT NULL THEN
             UPDATE OPOR 
             SET WddStatus = 'Y' 
             WHERE DocEntry = v_DocEntry;
         END IF;
         
+    END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_SyncHeaderAndDoc_Active` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`ultimau5_jvmacuh`@`%` PROCEDURE `sp_SyncHeaderAndDoc_Active`(IN p_WddCode INT)
+BEGIN
+    DECLARE v_ApprovedCount INT;
+    DECLARE v_TotalNeeded INT;
+    DECLARE v_DocEntry INT;
+    DECLARE v_DocStatus INT;
+
+    SELECT 
+        COUNT(CASE WHEN Status = 'Y' THEN 1 END),
+        COUNT(*)
+    INTO v_ApprovedCount, v_TotalNeeded
+    FROM WDD1
+    WHERE WddCode = p_WddCode;
+
+    SELECT 
+        a.DocEntry, 
+        b.DocStatus 
+    INTO v_DocEntry, v_DocStatus
+    FROM OWDD a
+    INNER JOIN OPOR b ON a.DocEntry = b.DocEntry
+    WHERE a.WddCode = p_WddCode
+    LIMIT 1;
+
+    IF v_ApprovedCount >= v_TotalNeeded 
+       AND v_TotalNeeded > 0 
+       AND v_DocStatus = 0 THEN
+
+        UPDATE OWDD 
+        SET Status = 'Y' 
+        WHERE WddCode = p_WddCode;
+
+        IF v_DocEntry IS NOT NULL THEN
+            UPDATE OPOR 
+            SET WddStatus = 'Y' 
+            WHERE DocEntry = v_DocEntry;
+        END IF;
+
     END IF;
 END ;;
 DELIMITER ;
@@ -14598,4 +14747,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-09-17  9:48:20
+-- Dump completed on 2026-09-25 10:17:26
