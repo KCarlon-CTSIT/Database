@@ -2,9 +2,9 @@ CREATE DATABASE  IF NOT EXISTS `ultimau5_atilive` /*!40100 DEFAULT CHARACTER SET
 USE `ultimau5_atilive`;
 -- MySQL dump 10.13  Distrib 8.0.46, for Win64 (x86_64)
 --
--- Host: 192.168.1.85    Database: ultimau5_atilive
+-- Host: 192.168.1.72    Database: ultimau5_atilive
 -- ------------------------------------------------------
--- Server version	8.0.46-0ubuntu0.24.04.4
+-- Server version	8.0.46-0ubuntu0.24.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -134,7 +134,7 @@ CREATE TABLE `DLN1` (
   `BaseLine` decimal(6,0) DEFAULT NULL,
   `LineStatus` tinyint(1) NOT NULL DEFAULT '0',
   `ItemCode` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Dscription` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Dscription` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Quantity` decimal(19,6) DEFAULT NULL,
   `ShipDate` date DEFAULT NULL,
   `OpenQty` decimal(19,6) DEFAULT NULL,
@@ -151,7 +151,7 @@ CREATE TABLE `DLN1` (
   `WhsCode` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `SlpCode` decimal(6,0) DEFAULT NULL,
   `Commission` decimal(19,6) DEFAULT NULL,
-  `TreeType` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Y',
+  `TreeType` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'Y',
   `AcctCode` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `TaxStatus` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `GrossBuyPr` decimal(19,6) DEFAULT NULL,
@@ -932,7 +932,7 @@ CREATE TABLE `IMG` (
   `image` longblob,
   `path` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`imageID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4803 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4809 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -944,15 +944,15 @@ DROP TABLE IF EXISTS `IMGApproval`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `IMGApproval` (
   `imageID` int NOT NULL AUTO_INCREMENT,
-  `DocNum` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `DocNum` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `SourceID` int DEFAULT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image` longblob,
-  `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`imageID`),
   KEY `IMG_Approval_FK_001_idx` (`SourceID`),
   CONSTRAINT `IMG_Approval_FK_001` FOREIGN KEY (`SourceID`) REFERENCES `OWTM` (`WtmCode`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1011,7 +1011,7 @@ CREATE TABLE `IMGPO` (
   `image` longblob,
   `path` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`imageID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2614 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2615 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1082,7 +1082,7 @@ CREATE TABLE `ITM1` (
   `LogInstanc` decimal(6,0) DEFAULT NULL,
   `ObjType` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   PRIMARY KEY (`ItemCount`)
-) ENGINE=InnoDB AUTO_INCREMENT=35501 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35533 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1239,13 +1239,13 @@ DROP TABLE IF EXISTS `Mst_Refrigerants`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Mst_Refrigerants` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `Refrigerant` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `SafetyClass` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Refrigerant` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Type` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `SafetyClass` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `GWP_100Year` int DEFAULT NULL,
   `GWP_20Year` int DEFAULT NULL,
-  `Applications` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `RegulatoryStatus` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Applications` text COLLATE utf8mb4_unicode_ci,
+  `RegulatoryStatus` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `IsActive` tinyint(1) DEFAULT '1',
   `CreatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -1298,7 +1298,7 @@ DROP TABLE IF EXISTS `OADM`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `OADM` (
-  `CompnyName` char(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `CompnyName` char(100) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `CompnyAddr` char(254) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `Country` char(3) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `PrintHeadr` char(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
@@ -1797,12 +1797,12 @@ DROP TABLE IF EXISTS `OCPR`;
 CREATE TABLE `OCPR` (
   `CntctCode` int NOT NULL AUTO_INCREMENT,
   `CardCode` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `Name` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `Name` varchar(100) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `Position` varchar(90) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `Address` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `Tel1` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `Tel2` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `Cellolar` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT '0000-000-0000',
+  `Cellolar` varchar(50) COLLATE utf8mb3_unicode_ci DEFAULT '0000-000-0000',
   `Fax` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `E_MailL` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT 'n/a',
   `Pager` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
@@ -1829,7 +1829,7 @@ CREATE TABLE `OCPR` (
   `DestinationLong` decimal(11,8) DEFAULT NULL,
   PRIMARY KEY (`CntctCode`),
   KEY `CardCode` (`CardCode`)
-) ENGINE=InnoDB AUTO_INCREMENT=1848 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1849 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2025,7 +2025,7 @@ CREATE TABLE `OCRD` (
   `Box1099` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `PymCode` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `BackOrder` char(1) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `PartDelivr` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `PartDelivr` varchar(50) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `DunnLevel` decimal(6,0) DEFAULT NULL,
   `DunnDate` date DEFAULT NULL,
   `BlockDunn` char(1) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
@@ -2250,31 +2250,31 @@ DROP TABLE IF EXISTS `OCTR`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `OCTR` (
   `ContractID` int NOT NULL AUTO_INCREMENT COMMENT 'Contract No.',
-  `CstmrCode` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Customer Code',
-  `CstmrName` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Customer Name',
+  `CstmrCode` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Customer Code',
+  `CstmrName` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Customer Name',
   `CntctCode` int DEFAULT NULL COMMENT 'Contact Person Code',
   `Owner` int DEFAULT NULL COMMENT 'Owner / Employee ID',
-  `Status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'A' COMMENT 'Contract Status (e.g., A=Approved, T=Terminated)',
+  `Status` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'A' COMMENT 'Contract Status (e.g., A=Approved, T=Terminated)',
   `CntrcTmplt` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Contract Template',
-  `CntrcType` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Contract Type (e.g., R=Regular, W=Warranty, S=Serial)',
-  `Renewal` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'N' COMMENT 'Renewal Flag (Y/N)',
+  `CntrcType` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Contract Type (e.g., R=Regular, W=Warranty, S=Serial)',
+  `Renewal` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'N' COMMENT 'Renewal Flag (Y/N)',
   `RemindVal` int DEFAULT NULL COMMENT 'Reminder Time Value',
-  `RemindUnit` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Remind Unit (D=Days, W=Weeks, M=Months)',
+  `RemindUnit` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Remind Unit (D=Days, W=Weeks, M=Months)',
   `Duration` int DEFAULT NULL COMMENT 'Duration of Coverage',
   `StartDate` date DEFAULT NULL COMMENT 'Start Date',
   `EndDate` date DEFAULT NULL COMMENT 'End Date',
   `ResponsVal` int DEFAULT NULL COMMENT 'Resolution Time Value',
-  `ResponsUnt` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Resolution Unit',
+  `ResponsUnt` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Resolution Unit',
   `Descriptio` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Description',
   `SrcDocType` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Source Document Type',
   `DocNum` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Source Document No.',
-  `MonEnabled` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Y' COMMENT 'Monday Enabled (Y/N)',
-  `TueEnabled` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Y' COMMENT 'Tuesday Enabled (Y/N)',
-  `WedEnabled` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Y' COMMENT 'Wednesday Enabled (Y/N)',
-  `ThuEnabled` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Y' COMMENT 'Thursday Enabled (Y/N)',
-  `FriEnabled` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Y' COMMENT 'Friday Enabled (Y/N)',
-  `SatEnabled` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'N' COMMENT 'Saturday Enabled (Y/N)',
-  `SunEnabled` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'N' COMMENT 'Sunday Enabled (Y/N)',
+  `MonEnabled` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'Y' COMMENT 'Monday Enabled (Y/N)',
+  `TueEnabled` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'Y' COMMENT 'Tuesday Enabled (Y/N)',
+  `WedEnabled` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'Y' COMMENT 'Wednesday Enabled (Y/N)',
+  `ThuEnabled` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'Y' COMMENT 'Thursday Enabled (Y/N)',
+  `FriEnabled` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'Y' COMMENT 'Friday Enabled (Y/N)',
+  `SatEnabled` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'N' COMMENT 'Saturday Enabled (Y/N)',
+  `SunEnabled` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'N' COMMENT 'Sunday Enabled (Y/N)',
   `MonStart` time DEFAULT NULL COMMENT 'Monday Start Time',
   `MonEnd` time DEFAULT NULL COMMENT 'Monday End Time',
   `TueStart` time DEFAULT NULL COMMENT 'Tuesday Start Time',
@@ -2289,25 +2289,25 @@ CREATE TABLE `OCTR` (
   `SatEnd` time DEFAULT NULL COMMENT 'Saturday End Time',
   `SunStrart` time DEFAULT NULL COMMENT 'Sunday Start Time',
   `SunEnd` time DEFAULT NULL COMMENT 'Sunday End Time',
-  `InclParts` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'N' COMMENT 'Include Parts (Y/N)',
-  `InclWork` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'N' COMMENT 'Include Labor (Y/N)',
-  `InclTravel` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'N' COMMENT 'Include Travel (Y/N)',
+  `InclParts` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'N' COMMENT 'Include Parts (Y/N)',
+  `InclWork` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'N' COMMENT 'Include Labor (Y/N)',
+  `InclTravel` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'N' COMMENT 'Include Travel (Y/N)',
   `Attachment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci COMMENT 'Attachments Data Field',
   `CreateDate` date DEFAULT NULL COMMENT 'Creation Date',
   `Remarks1` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci COMMENT 'Template Remarks',
   `Remarks2` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci COMMENT 'Remarks',
-  `RemindFlg` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'N' COMMENT 'Reminder Sent (Y/N)',
+  `RemindFlg` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'N' COMMENT 'Reminder Sent (Y/N)',
   `CTR1Count` int DEFAULT '0' COMMENT 'CTR1 Line Counter',
   `DocEntry` int DEFAULT NULL COMMENT 'Linked Document No.',
   `RemTmDays` int DEFAULT NULL COMMENT 'Remind Time in Days',
   `ResTmHours` decimal(10,2) DEFAULT NULL COMMENT 'Response Time in Hours',
-  `InclHldays` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'N' COMMENT 'Include Holidays (Y/N)',
+  `InclHldays` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'N' COMMENT 'Include Holidays (Y/N)',
   `SrvcType` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Service Type',
   `TermDate` date DEFAULT NULL COMMENT 'Termination Date',
   `ResponseV` int DEFAULT NULL COMMENT 'Response Time Value',
-  `ResponseU` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Response Unit',
+  `ResponseU` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Response Unit',
   `AtcEntry` int DEFAULT NULL COMMENT 'Attachment Entry Key',
-  `Transfered` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Year Transfer Status Code',
+  `Transfered` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Year Transfer Status Code',
   `Instance` int DEFAULT NULL COMMENT 'Instance Version Index ID',
   PRIMARY KEY (`ContractID`),
   KEY `IDX_OCTR_Customer` (`CstmrCode`)
@@ -2323,7 +2323,7 @@ DROP TABLE IF EXISTS `ODLN`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ODLN` (
   `DocEntry` int NOT NULL AUTO_INCREMENT,
-  `DocNum` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `DocNum` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `DocType` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `CANCELED` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Handwrtten` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -2356,7 +2356,7 @@ CREATE TABLE `ODLN` (
   `Ref2` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Comments` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `JrnlMemo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `DRno` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `DRno` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ReceiptNum` decimal(6,0) DEFAULT NULL,
   `GroupNum` decimal(6,0) DEFAULT NULL,
   `DocTime` decimal(6,0) DEFAULT NULL,
@@ -3470,20 +3470,20 @@ DROP TABLE IF EXISTS `OINS`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `OINS` (
   `insID` int NOT NULL AUTO_INCREMENT,
-  `customer` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `custmrName` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `custmrName` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `contactCod` int DEFAULT NULL,
-  `directCsmr` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `drctCsmNam` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `manufSN` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `internalSN` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `warranty` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `directCsmr` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `drctCsmNam` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `manufSN` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `internalSN` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `warranty` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `wrrntyStrt` date DEFAULT NULL,
   `wrrntyEnd` date DEFAULT NULL,
   `responsVal` int DEFAULT NULL,
-  `responsUnt` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `itemCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `itemName` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `responsUnt` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `itemCode` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `itemName` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `itemGroup` smallint DEFAULT NULL,
   `manufDate` date DEFAULT NULL,
   `delivery` int DEFAULT NULL,
@@ -3491,39 +3491,39 @@ CREATE TABLE `OINS` (
   `invoice` int DEFAULT NULL,
   `invoiceNum` int DEFAULT NULL,
   `dlvryDate` date DEFAULT NULL,
-  `cntctPhone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `street` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `block` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `zip` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `city` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `machine` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `state` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `instLction` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cntctPhone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `street` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `block` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `zip` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `machine` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `state` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `instLction` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `contract` int DEFAULT NULL,
   `cntrctStrt` date DEFAULT NULL,
   `cntrctEnd` date DEFAULT NULL,
-  `attachment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `objType` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `attachment` text COLLATE utf8mb4_unicode_ci,
+  `objType` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `logInstanc` int DEFAULT NULL,
   `userSign` smallint DEFAULT NULL,
   `createDate` date DEFAULT NULL,
   `userSign2` smallint DEFAULT NULL,
   `updateDate` date DEFAULT NULL,
-  `Building` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'A',
+  `Building` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'A',
   `replcIns` int DEFAULT NULL,
   `repByIns` int DEFAULT NULL,
   `technician` int DEFAULT NULL,
   `territory` int DEFAULT NULL,
   `AtcEntry` int DEFAULT NULL,
-  `Transfered` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `AddrType` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Transfered` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `AddrType` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Instance` int DEFAULT NULL,
-  `StreetNo` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `BPType` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `StreetNo` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `BPType` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `OwnerCode` int DEFAULT NULL,
-  `DPPStatus` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `DPPStatus` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `U_FrequencyDays` int DEFAULT '90',
   `img` longblob,
   PRIMARY KEY (`insID`),
@@ -4423,7 +4423,7 @@ DROP TABLE IF EXISTS `OPDN`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `OPDN` (
   `DocEntry` int NOT NULL AUTO_INCREMENT,
-  `DocNum` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `DocNum` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `DocType` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `CANCELED` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Handwrtten` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -5035,7 +5035,7 @@ CREATE TABLE `OPOR` (
   KEY `FK_OPOR_TO_OCRD_CardCode03ZPU` (`CardCode`),
   KEY `UserSign` (`UserSign`),
   CONSTRAINT `OPOR_ibfk_1` FOREIGN KEY (`UserSign`) REFERENCES `USER` (`USER_ID`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1131 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1129 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5665,7 +5665,7 @@ CREATE TABLE `OQUT` (
   `ResidenNum` char(1) DEFAULT NULL,
   PRIMARY KEY (`DocEntry`),
   UNIQUE KEY `DocNum_UNIQUE` (`DocNum`)
-) ENGINE=InnoDB AUTO_INCREMENT=1203 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=1206 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6245,7 +6245,7 @@ CREATE TABLE `ORDR` (
   `ReopManCls` char(1) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `DocManClsd` char(1) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   PRIMARY KEY (`DocEntry`)
-) ENGINE=InnoDB AUTO_INCREMENT=619 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=620 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6646,40 +6646,40 @@ DROP TABLE IF EXISTS `OSCL`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `OSCL` (
   `SRID` int NOT NULL AUTO_INCREMENT,
-  `DocNum` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `subject` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `subject2` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `subject3` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `subject4` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customer` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `custmrName` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `DocNum` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `subject` varchar(254) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `subject2` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `subject3` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `subject4` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `custmrName` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `contctCode` decimal(6,0) DEFAULT NULL,
-  `manufSN` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `internalSN` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `contractID` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `manufSN` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `internalSN` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contractID` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cntrctDate` date DEFAULT NULL,
   `resolDate` date DEFAULT NULL,
   `resolTime` decimal(6,0) DEFAULT NULL,
-  `free_1` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `free_1` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `free_2` date DEFAULT NULL,
   `origin` decimal(6,0) DEFAULT NULL,
-  `itemCode` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `itemName` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `itemCode` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `itemName` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `itemGroup` decimal(6,0) DEFAULT NULL,
   `status` int DEFAULT NULL,
-  `priority` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `callType` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `priority` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `callType` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `equipType` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Saves shortcodes: VRF, AHU, CHWFCU, ST, CHILLER',
-  `problemTyp` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `problemTyp2` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `problemTyp3` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `problemTyp4` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `problemTyp` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `problemTyp2` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `problemTyp3` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `problemTyp4` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `assignee` decimal(6,0) DEFAULT NULL,
-  `descrption` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description2` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `description3` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `description4` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `objType` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `descrption` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description2` text COLLATE utf8mb4_unicode_ci,
+  `description3` text COLLATE utf8mb4_unicode_ci,
+  `description4` text COLLATE utf8mb4_unicode_ci,
+  `objType` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `logInstanc` decimal(6,0) DEFAULT NULL,
   `userSign` decimal(6,0) DEFAULT NULL,
   `createDate` date DEFAULT NULL,
@@ -6688,11 +6688,11 @@ CREATE TABLE `OSCL` (
   `closeTime` decimal(6,0) DEFAULT NULL,
   `userSign2` decimal(6,0) DEFAULT NULL,
   `updateDate` date DEFAULT NULL,
-  `VPhHz` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `voltphhz` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `voltphhz2` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `voltphhz3` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `voltphhz4` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `VPhHz` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `voltphhz` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `voltphhz2` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `voltphhz3` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `voltphhz4` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fullLoadAmp` decimal(6,0) DEFAULT NULL,
   `fullLoadAmp2` decimal(10,0) DEFAULT NULL,
   `fullLoadAmp3` decimal(10,0) DEFAULT NULL,
@@ -6701,14 +6701,14 @@ CREATE TABLE `OSCL` (
   `ActualAmp2` decimal(10,0) DEFAULT NULL,
   `ActualAmp3` decimal(10,0) DEFAULT NULL,
   `ActualAmp4` decimal(10,0) DEFAULT NULL,
-  `RefPresHi` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `RefPresHi2` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `RefPresHi3` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `RefPresHi4` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `RefPresLow` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `RefPresLow2` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `RefPresLow3` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `RefPresLow4` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `RefPresHi` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `RefPresHi2` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `RefPresHi3` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `RefPresHi4` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `RefPresLow` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `RefPresLow2` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `RefPresLow3` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `RefPresLow4` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `WaterPresIn` decimal(6,0) DEFAULT NULL,
   `WaterPresIn2` decimal(10,0) DEFAULT NULL,
   `WaterPresIn3` decimal(10,0) DEFAULT NULL,
@@ -6738,40 +6738,40 @@ CREATE TABLE `OSCL` (
   `AmbientTempRoom3` decimal(10,0) DEFAULT NULL,
   `AmbientTempRoom4` decimal(10,0) DEFAULT NULL,
   `insID` decimal(6,0) DEFAULT NULL,
-  `technician` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `resolution` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `resolution2` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `resolution3` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `resolution4` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `signature_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Brand` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Brand2` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Brand3` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Brand4` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Capacity` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Capacity2` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Capacity3` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Capacity4` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Refrigerant` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Refrigerant2` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Refrigerant3` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Refrigerant4` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `OutModel` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `OutModel2` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `OutModel3` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `OutModel4` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `OutSerial` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `OutSerial2` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `OutSerial3` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `OutSerial4` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `IndoorModel` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `IndoorModel2` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `IndoorModel3` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `IndoorModel4` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `IndoorSerial` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `IndoorSerial2` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `IndoorSerial3` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `IndoorSerial4` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `technician` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `resolution` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `resolution2` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `resolution3` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `resolution4` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `signature_path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Brand` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Brand2` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Brand3` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Brand4` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Capacity` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Capacity2` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Capacity3` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Capacity4` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Refrigerant` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Refrigerant2` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Refrigerant3` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Refrigerant4` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `OutModel` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `OutModel2` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `OutModel3` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `OutModel4` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `OutSerial` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `OutSerial2` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `OutSerial3` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `OutSerial4` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `IndoorModel` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `IndoorModel2` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `IndoorModel3` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `IndoorModel4` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `IndoorSerial` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `IndoorSerial2` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `IndoorSerial3` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `IndoorSerial4` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `resolOnDat` date DEFAULT NULL,
   `resolOnTim` decimal(6,0) DEFAULT NULL,
   `respByDate` date DEFAULT NULL,
@@ -6783,70 +6783,70 @@ CREATE TABLE `OSCL` (
   `AssignTime` decimal(6,0) DEFAULT NULL,
   `UpdateTime` decimal(6,0) DEFAULT NULL,
   `responder` decimal(6,0) DEFAULT NULL,
-  `Transfered` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Transfered` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Instance` decimal(6,0) DEFAULT NULL,
   `Series` decimal(6,0) DEFAULT NULL,
-  `Handwrtten` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `PIndicator` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Handwrtten` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `PIndicator` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `StartDate` date DEFAULT NULL,
   `StartTime` time DEFAULT NULL,
   `EndDate` date DEFAULT NULL,
   `EndTime` time DEFAULT NULL,
   `Duration` decimal(19,6) DEFAULT NULL,
-  `DurType` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Reminder` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `DurType` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Reminder` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `RemQty` decimal(19,6) DEFAULT NULL,
-  `RemType` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `RemType` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `RemDate` date DEFAULT NULL,
   `RemSent` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `RemTime` decimal(6,0) DEFAULT NULL,
   `Location` decimal(6,0) DEFAULT NULL,
-  `AddrName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `AddrType` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Street` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `City` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Room` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `State` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Country` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `DisplInCal` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `SupplCode` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `signature1` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `signature2` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `signature3` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `signature4` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `acknowledgeby` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `designation` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `technician2` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `technician3` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `technician4` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `driver_name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `plate_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `servicesRendered` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `AddrName` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `AddrType` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Street` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `City` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Room` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `State` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Country` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `DisplInCal` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `SupplCode` varchar(254) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `signature1` longtext COLLATE utf8mb4_unicode_ci,
+  `signature2` longtext COLLATE utf8mb4_unicode_ci,
+  `signature3` longtext COLLATE utf8mb4_unicode_ci,
+  `signature4` longtext COLLATE utf8mb4_unicode_ci,
+  `acknowledgeby` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `designation` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `technician2` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `technician3` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `technician4` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `driver_name` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `plate_no` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `servicesRendered` text COLLATE utf8mb4_unicode_ci,
   `signedDateTime` timestamp(6) NULL DEFAULT NULL,
-  `assignedBy` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `assignedBy` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `RefrigerantUsedID` int DEFAULT NULL,
   `QtyRecovered` decimal(10,2) DEFAULT '0.00',
   `QtyCharged` decimal(10,2) DEFAULT '0.00',
-  `client_uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `client_uuid` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `StartLat` decimal(10,8) DEFAULT NULL,
   `StartLong` decimal(11,8) DEFAULT NULL,
   `EndLat` decimal(10,8) DEFAULT NULL,
   `EndLong` decimal(11,8) DEFAULT NULL,
   `CurrentLat` decimal(11,8) DEFAULT NULL,
   `CurrentLong` decimal(11,8) DEFAULT NULL,
-  `Remarks` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `U_CustFeedback` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `Remarks` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `U_CustFeedback` text COLLATE utf8mb4_unicode_ci,
   `U_FeedbackScore` int DEFAULT NULL,
   `U_FeedbackDate` datetime DEFAULT NULL,
-  `frameworkRef` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `frameworkRef` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ArrivedDate` date DEFAULT NULL,
   `ArrivedTime` time DEFAULT NULL,
   `signedDateTime2` timestamp(6) NULL DEFAULT NULL,
   `signedDateTime3` timestamp(6) NULL DEFAULT NULL,
-  `acknowledgeby2` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `designation2` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Lead Technician',
-  `acknowledgeby3` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `designation3` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `acknowledgeby2` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `designation2` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT 'Lead Technician',
+  `acknowledgeby3` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `designation3` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`SRID`),
   KEY `customer` (`customer`),
   KEY `FK_OSCL_Mst_Refrigerants` (`RefrigerantUsedID`),
@@ -6889,7 +6889,7 @@ DROP TABLE IF EXISTS `OSCL_EquipmentDetails`;
 CREATE TABLE `OSCL_EquipmentDetails` (
   `EquipmentID` int NOT NULL AUTO_INCREMENT,
   `SRID` int NOT NULL,
-  `Location` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Location` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `subject` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `problemTyp` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `descrption` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -6912,11 +6912,11 @@ CREATE TABLE `OSCL_EquipmentDetails` (
   `RefrigerantUsedID` int DEFAULT NULL,
   `QtyRecovered` decimal(10,2) DEFAULT '0.00',
   `QtyCharged` decimal(10,2) DEFAULT '0.00',
-  `client_uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Recommendation` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `client_uuid` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Recommendation` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Status` tinyint(1) DEFAULT '1' COMMENT '1 = Active, 0 = Inactive',
   `PartsNeeded` tinyint DEFAULT NULL,
-  `PartNeeded_imagepath` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `PartNeeded_imagepath` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`EquipmentID`),
   KEY `fk_equipment_oscl` (`SRID`),
   KEY `fk_equipment_refrigerant` (`RefrigerantUsedID`),
@@ -6983,8 +6983,8 @@ CREATE TABLE `OSCL_TECHNICIAN` (
   `TECH_ID` int NOT NULL COMMENT 'Links to Technician Profile table',
   `ASSIGNED_AT` datetime DEFAULT CURRENT_TIMESTAMP,
   `ASSIGNED_BY` int DEFAULT NULL COMMENT 'USER_ID of dispatcher or creator',
-  `IS_PRIMARY` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'N' COMMENT 'Y = Lead Tech on job, N = Crew support member',
-  `STATUS` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'ASSIGNED' COMMENT 'ASSIGNED, IN_PROGRESS, COMPLETED, CANCELLED',
+  `IS_PRIMARY` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'N' COMMENT 'Y = Lead Tech on job, N = Crew support member',
+  `STATUS` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT 'ASSIGNED' COMMENT 'ASSIGNED, IN_PROGRESS, COMPLETED, CANCELLED',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `uq_oscl_tech` (`SRID`,`TECH_ID`) COMMENT 'Guarantees a technician cannot be assigned to the same job twice',
   KEY `idx_srid` (`SRID`),
@@ -7297,15 +7297,15 @@ DROP TABLE IF EXISTS `OUQR`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `OUQR` (
   `IntrnalKey` int DEFAULT NULL COMMENT 'Internal Key',
-  `QCategory` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Query Category',
-  `QName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Query Description',
-  `QString` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci COMMENT 'Query',
-  `QType` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Query Type',
+  `QCategory` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Query Category',
+  `QName` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Query Description',
+  `QString` text COLLATE utf8mb4_unicode_ci COMMENT 'Query',
+  `QType` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Query Type',
   `ColumnSize` int DEFAULT NULL COMMENT 'Column Size',
-  `DBType` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'DB Type',
+  `DBType` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'DB Type',
   `QLastDate` decimal(10,0) DEFAULT NULL COMMENT 'Last Upload Date',
-  `QLastTime` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Last Upload Time',
-  `Xslt` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci COMMENT 'XSLT Transformation'
+  `QLastTime` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Last Upload Time',
+  `Xslt` text COLLATE utf8mb4_unicode_ci COMMENT 'XSLT Transformation'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -7675,7 +7675,7 @@ CREATE TABLE `OWDD` (
   CONSTRAINT `OWDD_ibfk_2` FOREIGN KEY (`UserSign`) REFERENCES `USER` (`USER_ID`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `OWDD_ibfk_3` FOREIGN KEY (`OwnerID`) REFERENCES `USER` (`USER_ID`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `OWDD_ibfk_4` FOREIGN KEY (`CurrStep`) REFERENCES `OWST` (`WstCode`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2014 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2015 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7918,48 +7918,48 @@ CREATE TABLE `PCH1` (
   `DocID` int NOT NULL AUTO_INCREMENT,
   `TargetType` int DEFAULT NULL,
   `TrgetEntry` int DEFAULT NULL,
-  `BaseRef` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `BaseRef` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `BaseType` int DEFAULT NULL,
   `BaseEntry` int DEFAULT NULL,
   `BaseLine` int DEFAULT NULL,
   `LineStatus` tinyint(1) DEFAULT NULL,
-  `ItemCode` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Dscription` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ItemCode` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Dscription` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Quantity` decimal(19,6) DEFAULT NULL,
   `ShipDate` date DEFAULT NULL,
   `OpenQty` decimal(19,6) DEFAULT NULL,
   `Price` decimal(19,6) DEFAULT NULL,
-  `Currency` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Currency` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Rate` decimal(19,6) DEFAULT NULL,
   `DiscPrcnt` decimal(19,6) DEFAULT NULL,
   `LineTotal` decimal(19,6) DEFAULT NULL,
   `TotalFrgn` decimal(19,6) DEFAULT NULL,
   `OpenSum` decimal(19,6) DEFAULT NULL,
   `OpenSumFC` decimal(19,6) DEFAULT NULL,
-  `VendorNum` varchar(17) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `SerialNum` varchar(17) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `WhsCode` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `VendorNum` varchar(17) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `SerialNum` varchar(17) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `WhsCode` varchar(8) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `SlpCode` int DEFAULT NULL,
   `Commission` decimal(19,6) DEFAULT NULL,
-  `TreeType` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `AcctCode` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `TaxStatus` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `TreeType` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `AcctCode` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `TaxStatus` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `GrossBuyPr` decimal(19,6) DEFAULT NULL,
   `PriceBefDi` decimal(19,6) DEFAULT NULL,
   `DocDate` date DEFAULT NULL,
   `Flags` int DEFAULT NULL,
   `OpenCreQty` decimal(19,6) DEFAULT NULL,
-  `UseBaseUn` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `SubCatNum` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `BaseCard` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `UseBaseUn` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `SubCatNum` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `BaseCard` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `TotalSumSy` decimal(19,6) DEFAULT NULL,
   `OpenSumSys` decimal(19,6) DEFAULT NULL,
-  `InvntSttus` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `OcrCode` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Project` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `CodeBars` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `InvntSttus` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `OcrCode` varchar(8) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Project` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `CodeBars` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `VatPrcnt` decimal(19,6) DEFAULT NULL,
-  `VatGroup` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `VatGroup` varchar(8) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `PriceAfVAT` decimal(19,6) DEFAULT NULL,
   `Height1` decimal(19,6) DEFAULT NULL,
   `Hght1Unit` int DEFAULT NULL,
@@ -7984,22 +7984,22 @@ CREATE TABLE `PCH1` (
   `Factor3` decimal(19,6) DEFAULT NULL,
   `Factor4` decimal(19,6) DEFAULT NULL,
   `PackQty` decimal(19,6) DEFAULT NULL,
-  `UpdInvntry` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `UpdInvntry` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `BaseDocNum` int DEFAULT NULL,
-  `BaseAtCard` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `SWW` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `BaseAtCard` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `SWW` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `VatSum` decimal(19,6) DEFAULT NULL,
   `VatSumFrgn` decimal(19,6) DEFAULT NULL,
   `VatSumSy` decimal(19,6) DEFAULT NULL,
   `FinncPriod` int DEFAULT NULL,
-  `ObjType` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ObjType` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `LogInstanc` int DEFAULT NULL,
-  `BlockNum` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ImportLog` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `BlockNum` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ImportLog` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `DedVatSum` decimal(19,6) DEFAULT NULL,
   `DedVatSumF` decimal(19,6) DEFAULT NULL,
   `DedVatSumS` decimal(19,6) DEFAULT NULL,
-  `IsAqcuistn` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `IsAqcuistn` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `DistribSum` decimal(19,6) DEFAULT NULL,
   `DstrbSumFC` decimal(19,6) DEFAULT NULL,
   `DstrbSumSC` decimal(19,6) DEFAULT NULL,
@@ -8009,16 +8009,16 @@ CREATE TABLE `PCH1` (
   `VisOrder` int DEFAULT NULL,
   `INMPrice` decimal(19,6) DEFAULT NULL,
   `PoTrgNum` int DEFAULT NULL,
-  `PoTrgEntry` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `DropShip` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `PoTrgEntry` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `DropShip` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `PoLineNum` int DEFAULT NULL,
-  `Address` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Address` varchar(254) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `TaxCode` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `TaxType` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `OrigItem` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `BackOrdr` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `FreeTxt` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `PickStatus` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `TaxType` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `OrigItem` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `BackOrdr` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `FreeTxt` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `PickStatus` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `PickOty` decimal(19,6) DEFAULT NULL,
   `PickIdNo` int DEFAULT NULL,
   `TrnsCode` int DEFAULT NULL,
@@ -8028,8 +8028,8 @@ CREATE TABLE `PCH1` (
   `BaseQty` decimal(19,6) DEFAULT NULL,
   `BaseOpnQty` decimal(19,6) DEFAULT NULL,
   `VatDscntPr` decimal(19,6) DEFAULT NULL,
-  `WtLiable` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `DeferrTax` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `WtLiable` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `DeferrTax` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `EquVatPer` decimal(19,6) DEFAULT NULL,
   `EquVatSum` decimal(19,6) DEFAULT NULL,
   `EquVatSumF` decimal(19,6) DEFAULT NULL,
@@ -8037,23 +8037,23 @@ CREATE TABLE `PCH1` (
   `LineVat` decimal(19,6) DEFAULT NULL,
   `LineVatlF` decimal(19,6) DEFAULT NULL,
   `LineVatS` decimal(19,6) DEFAULT NULL,
-  `unitMsr` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `unitMsr` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `NumPerMsr` decimal(19,6) DEFAULT NULL,
-  `CEECFlag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `CEECFlag` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ToStock` decimal(19,6) DEFAULT NULL,
   `ToDiff` decimal(19,6) DEFAULT NULL,
   `ExciseAmt` decimal(19,6) DEFAULT NULL,
   `TaxPerUnit` decimal(19,6) DEFAULT NULL,
   `TotInclTax` decimal(19,6) DEFAULT NULL,
-  `CountryOrg` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `CountryOrg` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `StckDstSum` decimal(19,6) DEFAULT NULL,
   `ReleasQtty` decimal(19,6) DEFAULT NULL,
-  `LineType` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `TranType` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `LineType` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `TranType` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Text` varchar(299) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `OwnerCode` int DEFAULT NULL,
   `StockPrice` decimal(19,6) DEFAULT NULL,
-  `ConsumeFCT` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ConsumeFCT` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `LstByDsSum` decimal(19,6) DEFAULT NULL,
   `StckINMPr` decimal(19,6) DEFAULT NULL,
   `LstBINMPr` decimal(19,6) DEFAULT NULL,
@@ -8067,81 +8067,81 @@ CREATE TABLE `PCH1` (
   `StckSumApp` decimal(19,6) DEFAULT NULL,
   `StckAppFc` decimal(19,6) DEFAULT NULL,
   `StckAppSc` decimal(19,6) DEFAULT NULL,
-  `ShipToCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ShipToDesc` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ShipToCode` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ShipToDesc` varchar(254) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `StckAppD` decimal(19,6) DEFAULT NULL,
   `StckAppDFC` decimal(19,6) DEFAULT NULL,
   `StckAppDSC` decimal(19,6) DEFAULT NULL,
-  `BasePrice` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `BasePrice` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `GTotal` decimal(19,6) DEFAULT NULL,
   `GTotalFC` decimal(19,6) DEFAULT NULL,
   `GTotalSC` decimal(19,6) DEFAULT NULL,
-  `DistribExp` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `DescOW` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `DetailsOW` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `DistribExp` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `DescOW` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `DetailsOW` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `GrossBase` int DEFAULT NULL,
   `VatWoDpm` decimal(19,6) DEFAULT NULL,
   `VatWoDpmFc` decimal(19,6) DEFAULT NULL,
   `VatWoDpmSc` decimal(19,6) DEFAULT NULL,
-  `CFOPCode` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `CSTCode` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `CFOPCode` varchar(6) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `CSTCode` varchar(6) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Usage2` int DEFAULT NULL,
-  `TaxOnly` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `WtCalced` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `TaxOnly` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `WtCalced` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `QtyToShip` decimal(19,6) DEFAULT NULL,
   `DelivrdQty` decimal(19,6) DEFAULT NULL,
   `OrderedQty` decimal(19,6) DEFAULT NULL,
-  `CogsOcrCod` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `CogsOcrCod` varchar(8) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `CiOppLineN` int DEFAULT NULL,
-  `CogsAcct` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ChgAsmBoMW` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `CogsAcct` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ChgAsmBoMW` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ActDelDate` date DEFAULT NULL,
-  `OcrCode2` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `OcrCode3` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `OcrCode4` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `OcrCode5` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `OcrCode2` varchar(8) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `OcrCode3` varchar(8) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `OcrCode4` varchar(8) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `OcrCode5` varchar(8) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `TaxDistSum` decimal(19,6) DEFAULT NULL,
   `TaxDistSFC` decimal(19,6) DEFAULT NULL,
   `TaxDistSSC` decimal(19,6) DEFAULT NULL,
-  `PostTax` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Excisable` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `PostTax` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Excisable` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `AssblValue` decimal(19,6) DEFAULT NULL,
   `RG23APart1` int DEFAULT NULL,
   `RG23APart2` int DEFAULT NULL,
   `RG23CPart1` int DEFAULT NULL,
   `RG23CPart2` int DEFAULT NULL,
-  `CogsOcrCo2` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `CogsOcrCo3` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `CogsOcrCo4` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `CogsOcrCo5` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `LnExcised` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `CogsOcrCo2` varchar(8) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `CogsOcrCo3` varchar(8) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `CogsOcrCo4` varchar(8) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `CogsOcrCo5` varchar(8) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `LnExcised` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `LocCode` int DEFAULT NULL,
   `StockValue` decimal(19,6) DEFAULT NULL,
   `GPTtlBasPr` decimal(19,6) DEFAULT NULL,
-  `unitMsr2` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `unitMsr2` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `NumPerMsr2` decimal(19,6) DEFAULT NULL,
-  `SpecPrice` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `CSTfIPI` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `CSTfPIS` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `CSTfCOFINS` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ExLineNo` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `isSrvCall` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `SpecPrice` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `CSTfIPI` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `CSTfPIS` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `CSTfCOFINS` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ExLineNo` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `isSrvCall` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `PQTReqQty` decimal(19,6) DEFAULT NULL,
   `PQTReqDate` date DEFAULT NULL,
   `PcDocType` int DEFAULT NULL,
   `PcQuantity` decimal(19,6) DEFAULT NULL,
-  `LinManClsd` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `VatGrpSrc` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `NoInvtryMv` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `LinManClsd` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `VatGrpSrc` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `NoInvtryMv` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ActBaseEnt` int DEFAULT NULL,
   `ActBaseLn` int DEFAULT NULL,
   `ActBaseNum` int DEFAULT NULL,
   `OpenRtnQty` decimal(19,6) DEFAULT NULL,
   `AgrNo` int DEFAULT NULL,
   `AgrLnNum` int DEFAULT NULL,
-  `CredOrigin` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `FREE01` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `FREE02` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `CredOrigin` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `FREE01` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `FREE02` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `FREE03` int DEFAULT NULL,
   PRIMARY KEY (`DocID`),
   KEY `DocEntry` (`DocEntry`),
@@ -8394,7 +8394,7 @@ CREATE TABLE `PM_SCHEDULE` (
   `FrequencyDays` int DEFAULT '90',
   `LastPerformedDate` date DEFAULT NULL,
   `NextDueDate` date DEFAULT NULL,
-  `IsActive` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Y',
+  `IsActive` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'Y',
   PRIMARY KEY (`PM_ID`),
   KEY `idx_equipment_due` (`EquipmentID`,`NextDueDate`),
   CONSTRAINT `fk_equipment` FOREIGN KEY (`EquipmentID`) REFERENCES `OINS` (`insID`)
@@ -8420,7 +8420,7 @@ CREATE TABLE `POR1` (
   `LineStatus` tinyint(1) NOT NULL DEFAULT '0',
   `RowNum` int DEFAULT NULL,
   `ItemCode` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `Dscription` varchar(1000) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `Dscription` varchar(1000) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `Quantity` decimal(19,6) DEFAULT NULL,
   `ShipDate` date DEFAULT NULL,
   `OpenQty` int DEFAULT NULL,
@@ -8628,7 +8628,7 @@ CREATE TABLE `POR1` (
   `PcQuantity` decimal(19,6) DEFAULT NULL,
   `LinManClsd` char(1) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `VatGrpSrc` char(1) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `SubText` varchar(250) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `SubText` varchar(250) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`DocID`),
   KEY `FK_POR1_TO_OPOR_DocEntryAYJqQ` (`DocEntry`),
   KEY `ItemCode` (`ItemCode`),
@@ -9100,7 +9100,7 @@ CREATE TABLE `QUT1` (
   PRIMARY KEY (`DocID`),
   KEY `QUT1_ibfk_1` (`DocEntry`),
   CONSTRAINT `QUT1_ibfk_1` FOREIGN KEY (`DocEntry`) REFERENCES `OQUT` (`DocEntry`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2672 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2701 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9326,7 +9326,7 @@ CREATE TABLE `QUT11` (
   PRIMARY KEY (`DocID`),
   KEY `DocEntry` (`DocEntry`),
   CONSTRAINT `QUT11_ibfk_1` FOREIGN KEY (`DocEntry`) REFERENCES `OQUT` (`DocEntry`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8943 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=8967 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9347,7 +9347,7 @@ CREATE TABLE `RDN1` (
   `BaseLine` decimal(6,0) DEFAULT NULL,
   `LineStatus` tinyint(1) NOT NULL DEFAULT '0',
   `ItemCode` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `Dscription` varchar(1000) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `Dscription` varchar(1000) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `Quantity` decimal(19,6) DEFAULT NULL,
   `ShipDate` date DEFAULT NULL,
   `OpenQty` decimal(19,6) DEFAULT NULL,
@@ -9579,7 +9579,7 @@ CREATE TABLE `RDR1` (
   `BaseLine` decimal(6,0) DEFAULT NULL,
   `LineStatus` tinyint(1) NOT NULL DEFAULT '0',
   `ItemCode` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `Dscription` varchar(1000) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `Dscription` varchar(1000) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `Quantity` decimal(19,6) DEFAULT NULL,
   `ShipDate` date DEFAULT NULL,
   `OpenQty` decimal(19,6) DEFAULT NULL,
@@ -9790,7 +9790,7 @@ CREATE TABLE `RDR1` (
   PRIMARY KEY (`LineNum`),
   KEY `DocEntry` (`DocEntry`),
   CONSTRAINT `RDR1_ibfk_1` FOREIGN KEY (`DocEntry`) REFERENCES `ORDR` (`DocEntry`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1189 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1190 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9811,7 +9811,7 @@ CREATE TABLE `RDR11` (
   `BaseLine` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `LineStatus` tinyint(1) NOT NULL DEFAULT '0',
   `ItemCode` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `Dscription` varchar(1000) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `Dscription` varchar(1000) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `Quantity` decimal(19,6) DEFAULT NULL,
   `ShipDate` date DEFAULT NULL,
   `OpenQty` decimal(19,6) DEFAULT NULL,
@@ -10323,10 +10323,10 @@ DROP TABLE IF EXISTS `TECHNICIAN_PROFILE`;
 CREATE TABLE `TECHNICIAN_PROFILE` (
   `TECH_ID` int NOT NULL AUTO_INCREMENT,
   `USER_ID` int DEFAULT NULL,
-  `FIRST_NAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `LAST_NAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `DESIGNATION` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Junior',
-  `IS_ACTIVE` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Y',
+  `FIRST_NAME` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `LAST_NAME` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `DESIGNATION` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT 'Junior',
+  `IS_ACTIVE` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'Y',
   PRIMARY KEY (`TECH_ID`),
   KEY `fk_tech_profile_user` (`USER_ID`),
   CONSTRAINT `fk_tech_profile_user` FOREIGN KEY (`USER_ID`) REFERENCES `USER` (`USER_ID`) ON DELETE SET NULL ON UPDATE CASCADE
@@ -10343,9 +10343,9 @@ DROP TABLE IF EXISTS `TECHNICIAN_SKILL`;
 CREATE TABLE `TECHNICIAN_SKILL` (
   `ID` int NOT NULL AUTO_INCREMENT,
   `TECH_ID` int NOT NULL COMMENT 'Links to Master Technician Profile',
-  `EQUIPMENT_TYPE` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'VRF, AHU, CHW_FCU, SPLIT_TYPE, CHILLER, NONE',
-  `SKILL_TYPE` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'INSTALLATION, PM, TROUBLESHOOTING, DUCTMAN, PIPE_FITTER, ELECTRICIAN, WELDER',
-  `MASTERY_LEVEL` enum('Novice','Intermediate','Expert') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Novice',
+  `EQUIPMENT_TYPE` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'VRF, AHU, CHW_FCU, SPLIT_TYPE, CHILLER, NONE',
+  `SKILL_TYPE` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'INSTALLATION, PM, TROUBLESHOOTING, DUCTMAN, PIPE_FITTER, ELECTRICIAN, WELDER',
+  `MASTERY_LEVEL` enum('Novice','Intermediate','Expert') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Novice',
   `VERIFIED_AT` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `uq_tech_skill_matrix` (`TECH_ID`,`EQUIPMENT_TYPE`,`SKILL_TYPE`),
@@ -10463,7 +10463,7 @@ CREATE TABLE `USER` (
   `JOBTITLE` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `DEPTID` int NOT NULL,
   `USERNAME` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-  `PASSWORD` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `PASSWORD` varchar(255) COLLATE utf8mb3_unicode_ci NOT NULL,
   `PASSWORD_TXT` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `ROLE` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `MANAGERID` int NOT NULL,
@@ -10535,7 +10535,7 @@ CREATE TABLE `WDD1` (
   CONSTRAINT `WDD1_ibfk_1` FOREIGN KEY (`StepCode`) REFERENCES `OWTM` (`WtmCode`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `WDD1_ibfk_2` FOREIGN KEY (`WddCode`) REFERENCES `OWDD` (`WddCode`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `WDD1_ibfk_3` FOREIGN KEY (`Status`) REFERENCES `OCLA` (`name`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10003 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10016 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -10574,7 +10574,7 @@ CREATE TABLE `WST1` (
   KEY `UserID` (`UserID`),
   CONSTRAINT `WST1_ibfk_1` FOREIGN KEY (`WstCode`) REFERENCES `OWST` (`WstCode`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `WST1_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `USER` (`USER_ID`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -10663,7 +10663,7 @@ DROP TABLE IF EXISTS `WTM5`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `WTM5` (
-  `WtmCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Code',
+  `WtmCode` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Code',
   `QueryId` int DEFAULT NULL COMMENT 'User Query Id'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -10677,8 +10677,8 @@ DROP TABLE IF EXISTS `WTM_CONDITIONS`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `WTM_CONDITIONS` (
   `CondId` int NOT NULL,
-  `CondName` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `DefaultRatio` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `CondName` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `DefaultRatio` varchar(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `IsActive` bit(1) DEFAULT b'1',
   PRIMARY KEY (`CondId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -10717,9 +10717,9 @@ DROP TABLE IF EXISTS `app_communications_log`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `app_communications_log` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `module_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'e.g., PO, SRID, INV, CUSTOMER_PORTAL',
-  `transaction_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'The primary key of the transaction (e.g., WddCode, SRID, DocEntry)',
-  `card_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'The Vendor or Client Code (e.g., CardCode)',
+  `module_type` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'e.g., PO, SRID, INV, CUSTOMER_PORTAL',
+  `transaction_id` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'The primary key of the transaction (e.g., WddCode, SRID, DocEntry)',
+  `card_code` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'The Vendor or Client Code (e.g., CardCode)',
   `user_id` int NOT NULL COMMENT 'Links to USER table identifying the sender',
   `comment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -11132,30 +11132,7 @@ CREATE TABLE `po_approval_comments` (
   PRIMARY KEY (`id`),
   KEY `idx_po_doc_entry` (`po_doc_entry`),
   KEY `idx_wdd_code` (`wdd_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `sq_approval_comments`
---
-
-DROP TABLE IF EXISTS `sq_approval_comments`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `sq_approval_comments` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `sq_doc_entry` int NOT NULL,
-  `wdd_code` int NOT NULL,
-  `step_code` int DEFAULT NULL COMMENT 'Tracks specific approval step if submitted by an approver',
-  `author_id` int DEFAULT NULL,
-  `author_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `comment_text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `wdd_status_at_time` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `idx_sq_doc_entry` (`sq_doc_entry`),
-  KEY `idx_sq_wdd_code` (`wdd_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -12301,78 +12278,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `GetItemBalancesForSalesQuotation` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`ultimau5_jvmacuh`@`%` PROCEDURE `GetItemBalancesForSalesQuotation`(IN groupID INT)
-BEGIN
-    SELECT 
-        I.ItemCode, 
-        I.ItemName, 
-        COALESCE(I.SalUnitMsr, I.BuyUnitMsr, 'Unit') AS SalUnitMsr,
-        COALESCE(I.SalUnitMsr, I.BuyUnitMsr, 'Unit') AS BuyUnitMsr, -- Compatibility alias for frontend bindings
-        I.ItmsGrpCod,
-        COALESCE(LH.PriceAfVAT, I.LastPurPrc, 0) AS LastVatPrice,
-        COALESCE(LH.DocCur, 'PHP') AS Currency,
-        COALESCE(LH.MasterCustomerName, LH.HeaderCardName, 'N/A') AS LastCustomer,
-        LH.DocDate AS LastQuotationDate,
-        COALESCE(STK.InStock, 0) AS InStock,
-        COALESCE(S.OnSO, 0) AS OnSO,
-        COALESCE(P.onPO, 0) AS onPO
-    FROM OITM I
-    INNER JOIN OITB B ON I.ItmsGrpCod = B.ItmsGrpCod
-    
-    -- Last Quotation / Sales Price History from QUT1 & OQUT
-    LEFT JOIN (
-        SELECT q1.ItemCode, q1.PriceAfVAT, q0.DocCur, q0.DocDate,
-               q0.CardName AS HeaderCardName, oc.CardName AS MasterCustomerName
-        FROM QUT1 q1
-        INNER JOIN OQUT q0 ON q1.DocEntry = q0.DocEntry
-        LEFT JOIN OCRD oc ON q0.CardCode = oc.CardCode
-        INNER JOIN (SELECT ItemCode, MAX(DocID) AS MaxDocID FROM QUT1 GROUP BY ItemCode) m ON q1.ItemCode = m.ItemCode AND q1.DocID = m.MaxDocID
-    ) LH ON I.ItemCode = LH.ItemCode
-
-    -- Open Sales Order Quantities (Committed)
-    LEFT JOIN (
-        SELECT r1.ItemCode, SUM(r1.OpenQty) AS OnSO
-        FROM RDR1 r1
-        INNER JOIN ORDR r0 ON r0.DocEntry = r1.DocEntry
-        WHERE r0.CANCELED = 'N' AND r1.LineStatus = 0
-        GROUP BY r1.ItemCode
-    ) S ON I.ItemCode = S.ItemCode
-
-    -- Open Purchase Order Quantities (Incoming)
-    LEFT JOIN (
-        SELECT p1.ItemCode, SUM(p1.OpenQty) AS onPO
-        FROM POR1 p1
-        INNER JOIN OPOR p0 ON p0.DocEntry = p1.DocEntry
-        WHERE p0.CANCELED = 'N' AND p1.LineStatus = 0
-        GROUP BY p1.ItemCode
-    ) P ON I.ItemCode = P.ItemCode
-
-    -- Current Physical Stock across warehouses
-    LEFT JOIN (
-        SELECT ItemCode, SUM(OnHand) AS InStock
-        FROM OITW
-        GROUP BY ItemCode
-    ) STK ON I.ItemCode = STK.ItemCode
-
-    WHERE I.ItmsGrpCod = (CASE WHEN groupID = 0 OR groupID IS NULL THEN 8 ELSE groupID END)
-      AND I.SellItem = 'Y'
-    ORDER BY I.ItemName ASC;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `GetItemBalancesWithVatPrice2` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -12440,122 +12345,6 @@ BEGIN
 
     -- Apply the exact filters you used in your successful SELECT query
     WHERE I.itmsGrpCod = groupID 
-      AND I.PrchseItem = 'Y' 
-      AND I.Valid = 'Y'
-    ORDER BY I.ItemCode;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `GetItemBalancesWithVatPrice3` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`ultimau5_jvmacuh`@`%` PROCEDURE `GetItemBalancesWithVatPrice3`(IN groupID INT)
-BEGIN
-    SELECT 
-        I.ItemCode, 
-        I.ItemName, 
-        I.BuyUnitMsr, 
-        I.ItmsGrpCod,
-        COALESCE(LH.PriceAfVAT, 0) AS LastVatPrice,
-        COALESCE(LH.DocCur, 'PHP') AS Currency,
-        COALESCE(LH.MasterVendorName, LH.HeaderCardName) AS LastVendor, 
-        LH.DocDate AS LastPurDate,
-        COALESCE(P.onPO, 0) AS onPO,
-        COALESCE(S.OnSO, 0) AS OnSO,
-
-        -- InStock Formula: GRPO - GR - DR + SR
-        (
-            COALESCE(grpo.OnGRPO, 0)
-            - COALESCE(gr.OnGR, 0)
-            - COALESCE(dr.OnDR, 0)
-            + COALESCE(sr.OnSR, 0)
-        ) AS InStock,
-
-        -- Available Formula: InStock + OnPO - OnSO
-        (
-            (
-                COALESCE(grpo.OnGRPO, 0)
-                - COALESCE(gr.OnGR, 0)
-                - COALESCE(dr.OnDR, 0)
-                + COALESCE(sr.OnSR, 0)
-                + COALESCE(P.onPO, 0)
-            ) 
-            - COALESCE(S.OnSO, 0)
-        ) AS Available
-
-    FROM OITM I
-    INNER JOIN OITB B ON I.ItmsGrpCod = B.ItmsGrpCod
-    
-    -- Last Purchase Price & Vendor History
-    LEFT JOIN (
-        SELECT r1.ItemCode, r1.PriceAfVAT, r0.DocCur, r0.DocDate,
-               r0.CardName AS HeaderCardName, oc.CardName AS MasterVendorName
-        FROM POR1 r1
-        INNER JOIN OPOR r0 ON r1.DocEntry = r0.DocEntry
-        LEFT JOIN OCRD oc ON r0.CardCode = oc.CardCode
-        WHERE r1.DocID IN (SELECT MAX(DocID) FROM POR1 GROUP BY ItemCode)
-    ) LH ON I.ItemCode = LH.ItemCode
-
-    -- Open PO Quantities
-    LEFT JOIN (
-        SELECT p1.ItemCode, SUM(p1.OpenQty) AS onPO
-        FROM POR1 p1
-        INNER JOIN OPOR p0 ON p0.DocEntry = p1.DocEntry
-        WHERE p0.CANCELED = 'N' AND p1.LineStatus = 0
-        GROUP BY p1.ItemCode
-    ) P ON I.ItemCode = P.ItemCode
-
-    -- Open Sales Orders
-    LEFT JOIN (
-        SELECT ItemCode, SUM(OpenQty) AS OnSO 
-        FROM RDR1 
-        WHERE LineStatus = 0 
-        GROUP BY ItemCode
-    ) S ON I.ItemCode = S.ItemCode
-
-    -- Goods Receipt POs (OnGRPO)
-    LEFT JOIN (
-        SELECT ItemCode, SUM(Quantity) AS OnGRPO
-        FROM PDN1
-        WHERE LineStatus = 0
-        GROUP BY ItemCode
-    ) grpo ON grpo.ItemCode = I.ItemCode
-
-    -- Goods Returns (OnGR)
-    LEFT JOIN (
-        SELECT ItemCode, SUM(Quantity) AS OnGR
-        FROM RPD1
-        WHERE LineStatus = 0
-        GROUP BY ItemCode
-    ) gr ON gr.ItemCode = I.ItemCode
-
-    -- Deliveries (OnDR)
-    LEFT JOIN (
-        SELECT ItemCode, SUM(Quantity) AS OnDR
-        FROM DLN1
-        WHERE LineStatus = 0
-        GROUP BY ItemCode
-    ) dr ON dr.ItemCode = I.ItemCode
-
-    -- Sales Returns (OnSR)
-    LEFT JOIN (
-        SELECT ItemCode, SUM(Quantity) AS OnSR
-        FROM RDN1
-        WHERE LineStatus = 0
-        GROUP BY ItemCode
-    ) sr ON sr.ItemCode = I.ItemCode
-
-    WHERE I.ItmsGrpCod = groupID 
       AND I.PrchseItem = 'Y' 
       AND I.Valid = 'Y'
     ORDER BY I.ItemCode;
@@ -13513,260 +13302,6 @@ BEGIN
       AND t1.ItemCode = 'SRVAIRC000018'
       AND t0.DocStatus <> '1'
     ORDER BY t0.DocEntry DESC;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `GetSQApprovals` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`ultimau5_jvmacuh`@`%` PROCEDURE `GetSQApprovals`(
-    IN p_FilterStatus VARCHAR(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin
-)
-BEGIN
-    SELECT 
-        COALESCE(a.WddCode, sq.DocEntry) AS 'ApprovalID',
-        'Sales Quotation' AS 'DocumentType',
-        sq.DocEntry,
-        COALESCE(sq.DocNum, CAST(sq.DocEntry AS CHAR)) AS 'DocNumber',
-        COALESCE(bp.CardName, sq.CardName) AS 'VendorName', -- Compatibility alias for tbl_approvals
-        COALESCE(bp.CardName, sq.CardName) AS 'CustomerName',
-        sq.DocTotal AS 'TotalAmount',
-        sq.DocCur AS 'Currency',
-        CONCAT(u.FNAME, ' ', u.LNAME) AS 'Originator',
-        
-        (SELECT GROUP_CONCAT(CONCAT(u2.FNAME, ' ', u2.LNAME) SEPARATOR ', ')
-         FROM WDD1 w1
-         INNER JOIN USER u2 ON w1.UserID = u2.USER_ID
-         WHERE w1.WddCode = a.WddCode AND w1.Status = 'Y') AS 'ApprovedByNames',
-
-        (SELECT GROUP_CONCAT(CONCAT(u3.FNAME, ' ', u3.LNAME) SEPARATOR ', ')
-         FROM WDD1 w2
-         INNER JOIN USER u3 ON w2.UserID = u3.USER_ID
-         WHERE w2.WddCode = a.WddCode AND w2.Status != 'Y') AS 'PendingApproverNames',
-
-        COALESCE(a.MaxReqr, (SELECT COUNT(*) FROM WDD1 WHERE WddCode = a.WddCode), 1) AS 'TotalNeeded',
-        COALESCE((SELECT COUNT(*) FROM WDD1 WHERE WddCode = a.WddCode AND Status != 'Y'), 1) AS 'PendingCount',
-
-        COALESCE(a.Remarks, sq.Comments) AS 'DraftRemarks',
-        CASE 
-            WHEN CAST(COALESCE(a.Status, sq.WddStatus) AS CHAR) = 'W' THEN 'Pending'
-            WHEN CAST(COALESCE(a.Status, sq.WddStatus) AS CHAR) = 'Y' THEN 'Approved'
-            WHEN CAST(COALESCE(a.Status, sq.WddStatus) AS CHAR) = 'N' THEN 'Rejected'
-            WHEN CAST(COALESCE(a.Status, sq.WddStatus) AS CHAR) = 'R' THEN 'Request'
-            ELSE 'Unknown'
-        END AS 'DecisionStatus',
-        COALESCE(a.CreateDate, sq.DocDate) AS 'RequestDate'
-    FROM 
-        OQUT sq
-    LEFT JOIN 
-        OWDD a ON sq.DocEntry = a.DocEntry AND a.ObjType = '11'
-    LEFT JOIN 
-        OCRD bp ON sq.CardCode = bp.CardCode
-    LEFT JOIN 
-        USER u ON sq.UserSign = u.USER_ID
-    WHERE 
-        (
-            (p_FilterStatus = 'Pending' AND CAST(COALESCE(a.Status, sq.WddStatus) AS CHAR) = 'W') OR
-            (p_FilterStatus = 'Approved' AND CAST(COALESCE(a.Status, sq.WddStatus) AS CHAR) = 'Y') OR
-            (p_FilterStatus = 'Rejected' AND CAST(COALESCE(a.Status, sq.WddStatus) AS CHAR) = 'N') OR
-            (p_FilterStatus = 'Request' AND CAST(COALESCE(a.Status, sq.WddStatus) AS CHAR) = 'R') OR
-            (p_FilterStatus = 'All' OR p_FilterStatus IS NULL OR p_FilterStatus = '')
-        )
-    ORDER BY 
-        COALESCE(a.CreateDate, sq.DocDate) DESC, sq.DocEntry DESC;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `GetSQByApprovalStatus` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`ultimau5_jvmacuh`@`%` PROCEDURE `GetSQByApprovalStatus`(
-    IN p_Status VARCHAR(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin
-)
-BEGIN
-    SELECT 
-        OQUT.DocEntry,
-        OQUT.DocNum, 
-        OQUT.DocDate, 
-        OQUT.CardCode, 
-        OCRD.CardName,  
-        OQUT.DocTotal, 
-        CONCAT(creator.FNAME, ' ', creator.LNAME) AS 'CreatedBy',
-        ow.WddCode AS 'ApprovalID',
-        
-        -- Global Document Approval Status
-        CASE 
-            WHEN CAST(COALESCE(ow.Status, OQUT.WddStatus) AS CHAR) = 'W' THEN 'Pending'
-            WHEN CAST(COALESCE(ow.Status, OQUT.WddStatus) AS CHAR) = 'Y' THEN 'Approved'
-            WHEN CAST(COALESCE(ow.Status, OQUT.WddStatus) AS CHAR) = 'N' THEN 'Rejected'
-            WHEN CAST(COALESCE(ow.Status, OQUT.WddStatus) AS CHAR) = 'R' THEN 'Request'
-            ELSE 'Not Required'
-        END AS 'ApprovalStatusLabel',
-
-        -- Threshold & Progress Metrics
-        COALESCE(ow.MaxReqr, (SELECT COUNT(*) FROM WDD1 WHERE WddCode = ow.WddCode), 1) AS 'RequiredApprovers',
-        (SELECT COUNT(*) FROM WDD1 WHERE WddCode = ow.WddCode AND CAST(Status AS CHAR) = 'Y') AS 'ApprovalsReceived',
-        
-        -- Pending Approvers List (Dual-aliased for widget compatibility)
-        (SELECT GROUP_CONCAT(CONCAT(u.FNAME, ' ', u.LNAME) SEPARATOR ', ')
-         FROM WDD1 w1
-         INNER JOIN USER u ON w1.UserID = u.USER_ID
-         WHERE w1.WddCode = ow.WddCode 
-           AND CAST(w1.Status AS CHAR) != 'Y') AS 'PendingApproverNames',
-        (SELECT GROUP_CONCAT(CONCAT(u.FNAME, ' ', u.LNAME) SEPARATOR ', ')
-         FROM WDD1 w1
-         INNER JOIN USER u ON w1.UserID = u.USER_ID
-         WHERE w1.WddCode = ow.WddCode 
-           AND CAST(w1.Status AS CHAR) != 'Y') AS 'PendingApprovers',
-
-        ow.Remarks AS 'ApprovalRemarks',
-        OQUT.DocStatus
-    FROM OQUT 
-    INNER JOIN OCRD ON OCRD.CardCode = OQUT.CardCode
-    LEFT JOIN USER creator ON OQUT.UserSign = creator.USER_ID
-    LEFT JOIN OWDD ow ON OQUT.DocEntry = ow.DocEntry AND ow.ObjType = '11'
-    WHERE 
-        -- 1. All Documents
-        (p_Status IS NULL OR p_Status = '' OR p_Status = 'All')
-
-        -- 2. Pending (Global header is 'W')
-        OR (
-            (p_Status = 'W' OR p_Status = 'Pending') 
-            AND CAST(COALESCE(ow.Status, OQUT.WddStatus) AS CHAR) = 'W'
-        )
-
-        -- 3. Approved (Global header is 'Y')
-        OR (
-            (p_Status = 'Y' OR p_Status = 'Approved') 
-            AND CAST(COALESCE(ow.Status, OQUT.WddStatus) AS CHAR) = 'Y'
-        )
-
-        -- 4. Rejected (Global header is 'N')
-        OR (
-            (p_Status = 'N' OR p_Status = 'Rejected') 
-            AND CAST(COALESCE(ow.Status, OQUT.WddStatus) AS CHAR) = 'N'
-        )
-
-        -- 5. Request / Clarification (Global header is 'R')
-        OR (
-            (p_Status = 'R' OR p_Status = 'Request') 
-            AND CAST(COALESCE(ow.Status, OQUT.WddStatus) AS CHAR) = 'R'
-        )
-    ORDER BY OQUT.DocEntry DESC;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `GetSQ_Data` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`ultimau5_jvmacuh`@`%` PROCEDURE `GetSQ_Data`(
-    IN p_DocNum VARCHAR(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin,
-    IN p_DocEntry INT
-)
-BEGIN
-    SELECT 
-        -- Header Information
-        T0.DocEntry, 
-        T0.DocNum, 
-        T0.CardCode, 
-        T2.CardName, 
-        T0.Address, 
-        T0.Address2, 
-        T0.DocDate, 
-        T0.DocDueDate, 
-        T0.NumAtCard,
-        T0.LeadTime,
-        T0.ScopeWork,
-        T0.Exclusion,
-        T0.Comments, 
-        T0.DocCur,
-        IF(T0.DocCur != 'PHP', T0.DocTotalFC, T0.DocTotal) AS Total,
-        T0.VatSum, 
-        T0.DiscSum,
-
-        -- Customer Details
-        T2.LicTradNum, 
-        T3.Name AS ContactPerson, 
-        T3.E_MailL,
-        T8.PymntGroup,
-
-        -- Line Item Details
-        T1.DocID,
-        COALESCE(T1.VisOrder, T1.DocID) AS RowNum,
-        T1.ItemCode, 
-        T1.Dscription, 
-        T1.Quantity, 
-        T1.unitMsr, 
-        T1.Price, 
-        T1.LineTotal, 
-        T1.FreeTxt AS ItemNote,
-
-        -- Prepared By (Sales Representative)
-        (SELECT CONCAT(U.Fname, ' ', U.Lname) FROM USER U WHERE U.User_ID = T0.UserSign) AS PreparedBy,
-
-        -- Final Approver Signature Data
-        Appr.ApproverName,
-        Appr.JobTitle,
-        Appr.ApprovedDate,
-        Appr.ApprovedTime
-
-    FROM OQUT T0 
-    INNER JOIN OCRD T2 ON T0.CardCode = T2.CardCode 
-    LEFT JOIN OCPR T3 ON T0.CntctCode = T3.CntctCode
-    INNER JOIN QUT1 T1 ON T0.DocEntry = T1.DocEntry 
-    LEFT JOIN OCTG T8 ON T0.GroupNum = T8.GroupNum
-
-    -- Join the Subquery for the Final Approver only
-    LEFT JOIN (
-        SELECT 
-            W1.WddCode,
-            CONCAT(U.Fname, ' ', U.Lname) AS ApproverName,
-            U.JobTitle,
-            W1.UpdateDate AS ApprovedDate,
-            W1.UpdateTime AS ApprovedTime
-        FROM WDD1 W1
-        INNER JOIN USER U ON W1.UserID = U.User_ID
-        WHERE W1.Status = 'Y'
-          AND W1.Wdd1ID = (
-              SELECT MAX(W2.Wdd1ID) 
-              FROM WDD1 W2 
-              WHERE W2.WddCode = W1.WddCode AND W2.Status = 'Y'
-          )
-    ) Appr ON Appr.WddCode = (SELECT WddCode FROM OWDD WHERE DocEntry = T0.DocEntry AND ObjType = '11' LIMIT 1)
-
-    WHERE (p_DocNum IS NOT NULL AND p_DocNum != '' AND T0.DocNum = p_DocNum)
-       OR (p_DocEntry IS NOT NULL AND p_DocEntry > 0 AND T0.DocEntry = p_DocEntry)
-    ORDER BY COALESCE(T1.VisOrder, T1.DocID);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -15551,4 +15086,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-10-02  8:22:41
+-- Dump completed on 2026-10-02  8:21:59
