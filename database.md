@@ -345,7 +345,7 @@ CREATE TABLE `DLN1` (
   PRIMARY KEY (`LineNum`),
   KEY `DocEntry` (`DocEntry`),
   CONSTRAINT `DLN1_ibfk_1` FOREIGN KEY (`DocEntry`) REFERENCES `ODLN` (`DocEntry`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8958 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9588 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -932,7 +932,7 @@ CREATE TABLE `IMG` (
   `image` longblob,
   `path` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`imageID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3885 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4803 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -944,15 +944,15 @@ DROP TABLE IF EXISTS `IMGApproval`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `IMGApproval` (
   `imageID` int NOT NULL AUTO_INCREMENT,
-  `DocNum` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `DocNum` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `SourceID` int DEFAULT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image` longblob,
-  `path` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`imageID`),
   KEY `IMG_Approval_FK_001_idx` (`SourceID`),
   CONSTRAINT `IMG_Approval_FK_001` FOREIGN KEY (`SourceID`) REFERENCES `OWTM` (`WtmCode`)
-) ENGINE=InnoDB AUTO_INCREMENT=2700 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -993,7 +993,7 @@ CREATE TABLE `IMGESR` (
   KEY `fk_images_equipment` (`EquipmentID`),
   CONSTRAINT `fk_images_equipment` FOREIGN KEY (`EquipmentID`) REFERENCES `OSCL_EquipmentDetails` (`EquipmentID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_images_oscl` FOREIGN KEY (`SRID`) REFERENCES `OSCL` (`SRID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=707 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1292 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1011,7 +1011,7 @@ CREATE TABLE `IMGPO` (
   `image` longblob,
   `path` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`imageID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2713 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2614 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1082,7 +1082,7 @@ CREATE TABLE `ITM1` (
   `LogInstanc` decimal(6,0) DEFAULT NULL,
   `ObjType` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   PRIMARY KEY (`ItemCount`)
-) ENGINE=InnoDB AUTO_INCREMENT=33685 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35501 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1829,7 +1829,7 @@ CREATE TABLE `OCPR` (
   `DestinationLong` decimal(11,8) DEFAULT NULL,
   PRIMARY KEY (`CntctCode`),
   KEY `CardCode` (`CardCode`)
-) ENGINE=InnoDB AUTO_INCREMENT=1624 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1848 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2238,7 +2238,7 @@ CREATE TABLE `OCTG` (
   `VATFirst` char(1) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `CrdMthd` char(1) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   PRIMARY KEY (`GroupNum`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2311,7 +2311,7 @@ CREATE TABLE `OCTR` (
   `Instance` int DEFAULT NULL COMMENT 'Instance Version Index ID',
   PRIMARY KEY (`ContractID`),
   KEY `IDX_OCTR_Customer` (`CstmrCode`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2602,7 +2602,7 @@ CREATE TABLE `ODLN` (
   `DocManClsd` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`DocEntry`),
   UNIQUE KEY `DocNum_UNIQUE` (`DocNum`)
-) ENGINE=InnoDB AUTO_INCREMENT=1088 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1138 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4702,7 +4702,7 @@ CREATE TABLE `OPDN` (
   `DocManClsd` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`DocEntry`),
   KEY `DocNum` (`DocNum`)
-) ENGINE=InnoDB AUTO_INCREMENT=865 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=867 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4741,7 +4741,7 @@ CREATE TABLE `OPLN` (
   `UserSign` decimal(6,0) DEFAULT NULL,
   `IsGrossPrc` char(1) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   PRIMARY KEY (`ListNum`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5035,7 +5035,7 @@ CREATE TABLE `OPOR` (
   KEY `FK_OPOR_TO_OCRD_CardCode03ZPU` (`CardCode`),
   KEY `UserSign` (`UserSign`),
   CONSTRAINT `OPOR_ibfk_1` FOREIGN KEY (`UserSign`) REFERENCES `USER` (`USER_ID`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1122 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1131 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5665,7 +5665,7 @@ CREATE TABLE `OQUT` (
   `ResidenNum` char(1) DEFAULT NULL,
   PRIMARY KEY (`DocEntry`),
   UNIQUE KEY `DocNum_UNIQUE` (`DocNum`)
-) ENGINE=InnoDB AUTO_INCREMENT=1081 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=1203 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6245,7 +6245,7 @@ CREATE TABLE `ORDR` (
   `ReopManCls` char(1) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `DocManClsd` char(1) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   PRIMARY KEY (`DocEntry`)
-) ENGINE=InnoDB AUTO_INCREMENT=569 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=619 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6851,8 +6851,10 @@ CREATE TABLE `OSCL` (
   KEY `customer` (`customer`),
   KEY `FK_OSCL_Mst_Refrigerants` (`RefrigerantUsedID`),
   KEY `client_uuid` (`client_uuid`),
+  KEY `idx_customer` (`customer`),
+  KEY `idx_status` (`status`),
   CONSTRAINT `FK_OSCL_Mst_Refrigerants` FOREIGN KEY (`RefrigerantUsedID`) REFERENCES `Mst_Refrigerants` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=188 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=504 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6874,7 +6876,7 @@ CREATE TABLE `OSCL_DRIVER` (
   KEY `fk_oscl_driver_user` (`DRIVER_ID`),
   CONSTRAINT `fk_oscl_driver_srid` FOREIGN KEY (`SRID`) REFERENCES `OSCL` (`SRID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_oscl_driver_user` FOREIGN KEY (`DRIVER_ID`) REFERENCES `USER` (`USER_ID`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6919,9 +6921,10 @@ CREATE TABLE `OSCL_EquipmentDetails` (
   KEY `fk_equipment_oscl` (`SRID`),
   KEY `fk_equipment_refrigerant` (`RefrigerantUsedID`),
   KEY `idx_equipment_client_uuid` (`client_uuid`),
+  KEY `idx_srid` (`SRID`),
   CONSTRAINT `fk_equipment_oscl` FOREIGN KEY (`SRID`) REFERENCES `OSCL` (`SRID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_equipment_refrigerant` FOREIGN KEY (`RefrigerantUsedID`) REFERENCES `Mst_Refrigerants` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=319 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=808 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6942,7 +6945,7 @@ CREATE TABLE `OSCL_IndoorUnits` (
   PRIMARY KEY (`IndoorUnitID`),
   KEY `fk_indoor_equipment` (`EquipmentID`),
   CONSTRAINT `fk_indoor_equipment` FOREIGN KEY (`EquipmentID`) REFERENCES `OSCL_EquipmentDetails` (`EquipmentID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1084 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9740 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6964,7 +6967,7 @@ CREATE TABLE `OSCL_PerformanceReadings` (
   PRIMARY KEY (`ReadingID`),
   KEY `fk_readings_equipment` (`EquipmentID`),
   CONSTRAINT `fk_readings_equipment` FOREIGN KEY (`EquipmentID`) REFERENCES `OSCL_EquipmentDetails` (`EquipmentID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1814 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5279 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6986,9 +6989,10 @@ CREATE TABLE `OSCL_TECHNICIAN` (
   UNIQUE KEY `uq_oscl_tech` (`SRID`,`TECH_ID`) COMMENT 'Guarantees a technician cannot be assigned to the same job twice',
   KEY `idx_srid` (`SRID`),
   KEY `idx_tech_id` (`TECH_ID`),
+  KEY `idx_srid_tech` (`SRID`,`TECH_ID`),
   CONSTRAINT `fk_oscltech_oscl` FOREIGN KEY (`SRID`) REFERENCES `OSCL` (`SRID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_oscltech_profile` FOREIGN KEY (`TECH_ID`) REFERENCES `TECHNICIAN_PROFILE` (`TECH_ID`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=281 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1350 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7014,7 +7018,7 @@ CREATE TABLE `OSCL_TOOL` (
   CONSTRAINT `fk_oscltool_asset` FOREIGN KEY (`ASSET_ID`) REFERENCES `TOOL_ITEMS` (`ASSET_ID`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `fk_oscltool_oscl` FOREIGN KEY (`SRID`) REFERENCES `OSCL` (`SRID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_oscltool_user` FOREIGN KEY (`USER_ID`) REFERENCES `USER` (`USER_ID`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7038,7 +7042,7 @@ CREATE TABLE `OSCL_VEHICLE` (
   CONSTRAINT `fk_oscl_vehicle_master` FOREIGN KEY (`VEHICLE_ID`) REFERENCES `VEHICLE_MASTER` (`VEHICLE_ID`) ON UPDATE CASCADE,
   CONSTRAINT `fk_oscl_vehicle_srid` FOREIGN KEY (`SRID`) REFERENCES `OSCL` (`SRID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_oscl_vehicle_user` FOREIGN KEY (`ASSIGNED_BY`) REFERENCES `USER` (`USER_ID`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7671,7 +7675,7 @@ CREATE TABLE `OWDD` (
   CONSTRAINT `OWDD_ibfk_2` FOREIGN KEY (`UserSign`) REFERENCES `USER` (`USER_ID`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `OWDD_ibfk_3` FOREIGN KEY (`OwnerID`) REFERENCES `USER` (`USER_ID`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `OWDD_ibfk_4` FOREIGN KEY (`CurrStep`) REFERENCES `OWST` (`WstCode`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1905 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2014 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7853,7 +7857,7 @@ CREATE TABLE `OWST` (
   PRIMARY KEY (`WstCode`),
   KEY `UserSign` (`UserSign`),
   CONSTRAINT `OWST_ibfk_1` FOREIGN KEY (`UserSign`) REFERENCES `USER` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7874,7 +7878,7 @@ CREATE TABLE `OWTM` (
   PRIMARY KEY (`WtmCode`),
   KEY `UserSign` (`UserSign`),
   CONSTRAINT `OWTM_ibfk_1` FOREIGN KEY (`UserSign`) REFERENCES `USER` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8374,7 +8378,7 @@ CREATE TABLE `PDN1` (
   PRIMARY KEY (`DocID`),
   KEY `DocEntry` (`DocEntry`),
   KEY `ItemCode` (`ItemCode`)
-) ENGINE=InnoDB AUTO_INCREMENT=4176 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4181 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8624,12 +8628,12 @@ CREATE TABLE `POR1` (
   `PcQuantity` decimal(19,6) DEFAULT NULL,
   `LinManClsd` char(1) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `VatGrpSrc` char(1) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `SubText` varchar(255) COLLATE utf8mb3_unicode_ci DEFAULT NULL COMMENT 'This is for additional text for P.O. Item for Sub Con clients',
+  `SubText` varchar(250) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`DocID`),
   KEY `FK_POR1_TO_OPOR_DocEntryAYJqQ` (`DocEntry`),
   KEY `ItemCode` (`ItemCode`),
   CONSTRAINT `FK_POR1_TO_OPOR_DocEntryAYJqQ` FOREIGN KEY (`DocEntry`) REFERENCES `OPOR` (`DocEntry`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=1610 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1740 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9096,7 +9100,7 @@ CREATE TABLE `QUT1` (
   PRIMARY KEY (`DocID`),
   KEY `QUT1_ibfk_1` (`DocEntry`),
   CONSTRAINT `QUT1_ibfk_1` FOREIGN KEY (`DocEntry`) REFERENCES `OQUT` (`DocEntry`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2230 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2672 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9322,7 +9326,7 @@ CREATE TABLE `QUT11` (
   PRIMARY KEY (`DocID`),
   KEY `DocEntry` (`DocEntry`),
   CONSTRAINT `QUT11_ibfk_1` FOREIGN KEY (`DocEntry`) REFERENCES `OQUT` (`DocEntry`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8289 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=8943 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9786,7 +9790,7 @@ CREATE TABLE `RDR1` (
   PRIMARY KEY (`LineNum`),
   KEY `DocEntry` (`DocEntry`),
   CONSTRAINT `RDR1_ibfk_1` FOREIGN KEY (`DocEntry`) REFERENCES `ORDR` (`DocEntry`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=968 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1189 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -10018,7 +10022,7 @@ CREATE TABLE `RDR11` (
   PRIMARY KEY (`DocID`),
   KEY `DocEntry` (`DocEntry`),
   CONSTRAINT `RDR11_ibfk_1` FOREIGN KEY (`DocEntry`) REFERENCES `ORDR` (`DocEntry`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5658 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5991 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -10326,7 +10330,7 @@ CREATE TABLE `TECHNICIAN_PROFILE` (
   PRIMARY KEY (`TECH_ID`),
   KEY `fk_tech_profile_user` (`USER_ID`),
   CONSTRAINT `fk_tech_profile_user` FOREIGN KEY (`USER_ID`) REFERENCES `USER` (`USER_ID`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -10347,7 +10351,7 @@ CREATE TABLE `TECHNICIAN_SKILL` (
   UNIQUE KEY `uq_tech_skill_matrix` (`TECH_ID`,`EQUIPMENT_TYPE`,`SKILL_TYPE`),
   KEY `idx_tech_id` (`TECH_ID`),
   CONSTRAINT `fk_skills_profile` FOREIGN KEY (`TECH_ID`) REFERENCES `TECHNICIAN_PROFILE` (`TECH_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=273 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=310 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -10382,7 +10386,7 @@ CREATE TABLE `TOOL_ITEMS` (
   UNIQUE KEY `idx_asset_tag` (`INTERNAL_TAG`),
   KEY `TOOL_ID` (`TOOL_ID`),
   CONSTRAINT `TOOL_ITEMS_ibfk_1` FOREIGN KEY (`TOOL_ID`) REFERENCES `TOOL_MASTER` (`TOOL_ID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -10470,7 +10474,7 @@ CREATE TABLE `USER` (
   PRIMARY KEY (`USER_ID`),
   KEY `DEPTID` (`DEPTID`),
   CONSTRAINT `USER_ibfk_1` FOREIGN KEY (`DEPTID`) REFERENCES `DEPARTMENT` (`DEPT_ID`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -10528,9 +10532,10 @@ CREATE TABLE `WDD1` (
   KEY `WddCode` (`WddCode`),
   KEY `UserID` (`UserID`),
   KEY `Status` (`Status`),
+  CONSTRAINT `WDD1_ibfk_1` FOREIGN KEY (`StepCode`) REFERENCES `OWTM` (`WtmCode`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `WDD1_ibfk_2` FOREIGN KEY (`WddCode`) REFERENCES `OWDD` (`WddCode`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `WDD1_ibfk_3` FOREIGN KEY (`Status`) REFERENCES `OCLA` (`name`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8858 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10003 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -10569,7 +10574,7 @@ CREATE TABLE `WST1` (
   KEY `UserID` (`UserID`),
   CONSTRAINT `WST1_ibfk_1` FOREIGN KEY (`WstCode`) REFERENCES `OWST` (`WstCode`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `WST1_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `USER` (`USER_ID`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -10588,7 +10593,7 @@ CREATE TABLE `WTM1` (
   KEY `UserID` (`UserID`),
   CONSTRAINT `WTM1_ibfk_1` FOREIGN KEY (`WtmCode`) REFERENCES `OWTM` (`WtmCode`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `WTM1_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `USER` (`USER_ID`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=175 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=154 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -10610,7 +10615,7 @@ CREATE TABLE `WTM2` (
   KEY `WstCode` (`WstCode`),
   CONSTRAINT `WTM2_ibfk_1` FOREIGN KEY (`WtmCode`) REFERENCES `OWTM` (`WtmCode`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `WTM2_ibfk_2` FOREIGN KEY (`WstCode`) REFERENCES `OWST` (`WstCode`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -10630,7 +10635,7 @@ CREATE TABLE `WTM3` (
   KEY `TransType` (`TransType`),
   CONSTRAINT `WTM3_ibfk_1` FOREIGN KEY (`TransType`) REFERENCES `TRANS` (`TransTypeID`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `WTM3_ibfk_2` FOREIGN KEY (`WtmCode`) REFERENCES `OWTM` (`WtmCode`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -10647,7 +10652,7 @@ CREATE TABLE `WTM4` (
   `opCode` int NOT NULL,
   `opValue` varchar(90) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   PRIMARY KEY (`WTM4Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -10723,7 +10728,7 @@ CREATE TABLE `app_communications_log` (
   KEY `idx_module_tx` (`module_type`,`transaction_id`),
   KEY `idx_card_code` (`card_code`),
   KEY `idx_created` (`created_at` DESC)
-) ENGINE=InnoDB AUTO_INCREMENT=166 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=178 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -11127,7 +11132,7 @@ CREATE TABLE `po_approval_comments` (
   PRIMARY KEY (`id`),
   KEY `idx_po_doc_entry` (`po_doc_entry`),
   KEY `idx_wdd_code` (`wdd_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -11416,7 +11421,6 @@ CREATE TABLE `temp_OITM` (
 -- Dumping routines for database 'ultimau5_atilive'
 --
 /*!50003 DROP PROCEDURE IF EXISTS `GetAllItemsLastPurchase` */;
-ALTER DATABASE `ultimau5_atilive` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -11450,9 +11454,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `ultimau5_atilive` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `GetCompletedToolsOrder` */;
-ALTER DATABASE `ultimau5_atilive` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -11497,7 +11499,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `ultimau5_atilive` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `GetContactInfo` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -11519,8 +11520,8 @@ BEGIN
         OCRD.CardType, 
         OCRD.Address, 
         OCRD.CntctPrsn,
-        OCPR.Tel1,
-                OCPR.Tel2,
+		OCPR.Tel1,
+		OCPR.Tel2,
         OCPR.E_MailL,
         OCPR.CntctCode, 
         OCPR.Name AS ContactName, 
@@ -11559,7 +11560,6 @@ DELIMITER ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `GetCustomerSalesOrdersByItem` */;
-ALTER DATABASE `ultimau5_atilive` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -11594,9 +11594,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `ultimau5_atilive` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `GetCustomerSalesOrdersBySubserv124` */;
-ALTER DATABASE `ultimau5_atilive` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -11631,7 +11629,122 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `ultimau5_atilive` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
+/*!50003 DROP PROCEDURE IF EXISTS `GetCustomerServiceReports77` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`ultimau5_jvmacuh`@`%` PROCEDURE `GetCustomerServiceReports77`(
+    IN p_CardCode VARCHAR(50)
+)
+BEGIN
+    SELECT 
+        o.SRID, 
+        o.subject, 
+        o.customer, 
+        o.custmrName, 
+        o.AddrName, 
+        o.contctCode, 
+        o.contractID, 
+        o.callType, 
+        o.createDate, 
+        o.createTime, 
+        o.insID, 
+        o.technician, 
+        o.StartDate, 
+        o.StartTime, 
+        o.EndDate, 
+        o.EndTime, 
+        o.Duration, 
+        o.signature1, 
+        o.signature2,
+        o.signature3,
+        o.acknowledgeby2, 
+        o.acknowledgeby3,
+        o.acknowledgeby, 
+        o.designation, 
+        o.designation2, 
+        o.designation3, 
+        o.signedDateTime,
+        o.technician2, 
+        o.technician3, 
+        o.technician4, 
+        o.driver_name, 
+        o.plate_no, 
+        o.servicesRendered,
+        c.Name AS ContactName, 
+        c.Address AS ContactAddress,
+        o.Status,
+        o.Remarks,
+        o.assignedby,
+        
+        COALESCE(eq_summary.PartsNeeded, '') AS PartsNeeded,
+        
+        -- Returns full HTTP URL for the uploaded image
+        COALESCE(eq_summary.PartNeeded_ImageLink, '') AS PartNeeded_ImageLink,
+        
+        COALESCE(tech_crew.LeadTechnicianName, '') AS LeadTechnicianName,
+        COALESCE(tech_crew.CrewSupportNames, '') AS CrewSupportNames,
+        COALESCE(tech_crew.LeadStatus, '') AS LeadJobStatus
+    FROM 
+        `ultimau5_atilive`.`OSCL` o
+    INNER JOIN 
+        `ultimau5_atilive`.`OCRD` r ON r.CardCode = o.customer 
+    LEFT JOIN 
+        `ultimau5_atilive`.`OCPR` c ON c.CntctCode = o.contctCode AND c.CardCode = o.customer
+
+    -- Equipment Details aggregation subquery
+    LEFT JOIN (
+        SELECT 
+            SRID,
+            GROUP_CONCAT(DISTINCT PartsNeeded SEPARATOR ', ') AS PartsNeeded,
+            GROUP_CONCAT(
+                DISTINCT CASE 
+                    WHEN COALESCE(TRIM(PartNeeded_imagepath), '') != '' THEN
+                        -- Prepends base URL directly to the filename stored in PartNeeded_imagepath
+                        CONCAT('http://192.168.1.72:8080/ATIeSR/api/uploads/', TRIM(PartNeeded_imagepath))
+                    ELSE NULL
+                END SEPARATOR ', '
+            ) AS PartNeeded_ImageLink
+        FROM `ultimau5_atilive`.`OSCL_EquipmentDetails`
+        GROUP BY SRID
+    ) eq_summary ON eq_summary.SRID = o.SRID
+        
+    -- Technician crew subquery
+    LEFT JOIN (
+        SELECT 
+            t.SRID,
+            MAX(CASE WHEN t.IS_PRIMARY = 'Y' THEN CONCAT(tp.FIRST_NAME, ' ', tp.LAST_NAME) END) AS LeadTechnicianName,
+            MAX(CASE WHEN t.IS_PRIMARY = 'Y' THEN t.STATUS END) AS LeadStatus,
+            GROUP_CONCAT(
+                CASE WHEN t.IS_PRIMARY = 'N' THEN CONCAT(tp.FIRST_NAME, ' ', tp.LAST_NAME) END 
+                ORDER BY tp.FIRST_NAME ASC, tp.LAST_NAME ASC 
+                SEPARATOR ', '
+            ) AS CrewSupportNames
+        FROM 
+            `ultimau5_atilive`.`OSCL_TECHNICIAN` t
+        INNER JOIN 
+            `ultimau5_atilive`.`TECHNICIAN_PROFILE` tp ON t.TECH_ID = tp.TECH_ID
+        GROUP BY 
+            t.SRID
+    ) tech_crew ON tech_crew.SRID = o.SRID
+
+    WHERE 
+        o.customer = p_CardCode    
+        AND o.Status = 1
+    ORDER BY 
+        o.SRID DESC;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `GetDeliveriesBySpec` */;
 ALTER DATABASE `ultimau5_atilive` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -11827,7 +11940,7 @@ CREATE DEFINER=`ultimau5_jvmacuh`@`%` PROCEDURE `GetEquipmentByCardCode3`(
     IN p_CardCode VARCHAR(15)
 )
 BEGIN
-    SELECT 
+    SELECT DISTINCT
         e.insID,
         e.itemCode,
         e.itemName,
@@ -11843,15 +11956,22 @@ BEGIN
         c.DocNum,
         e.instLction AS Installation_Location,
         
-        -- Raw image name/path from OINS
-        e.img,
-        
-      
+        -- Equipment Image handling from OINS
+        e.img AS Equipment_Image,
+        CASE 
+            WHEN COALESCE(TRIM(e.img), '') != '' THEN
+                CASE 
+                    WHEN e.img LIKE 'http%' THEN e.img
+                    WHEN e.img LIKE '/var/www/html/%' THEN REPLACE(TRIM(e.img), '/var/www/html/', 'http://192.168.1.72:8080/')
+                    ELSE CONCAT('http://192.168.1.72:8080/ATIeSR/api/uploads/', TRIM(e.img))
+                END
+            ELSE ''
+        END AS Equipment_ImageUrl,
         
         -- Defaults Current_Status to 1 if both derived statuses are NULL
         COALESCE(oed.Status, oiu.Status, 1) AS Current_Status,
 
-        -- Returns 'Default' when defaulting to 1
+        -- Returns 'Default' (or whatever source label you prefer) when defaulting to 1
         CASE 
             WHEN oed.Status IS NOT NULL THEN 'Outdoor'
             WHEN oiu.Status IS NOT NULL THEN 'Indoor'
@@ -11894,6 +12014,206 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `GetEquipmentByCardCode4` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`ultimau5_jvmacuh`@`%` PROCEDURE `GetEquipmentByCardCode4`(
+    IN p_CardCode VARCHAR(15)
+)
+BEGIN
+    SELECT DISTINCT
+        e.insID,
+        e.itemCode,
+        e.itemName,
+        e.manufSN AS Manufacturer_Serial,
+        e.machine AS MRI_Machine,
+        e.internalSN AS Internal_Serial,
+        e.warranty AS Warranty_Type,
+        e.wrrntyStrt AS Warranty_Start,
+        e.wrrntyEnd AS Warranty_End,
+        e.contract AS Contract,
+        c.StartDate,
+        c.EndDate,
+        c.DocNum,
+        e.instLction AS Installation_Location,
+        
+        -- Equipment Image handling from OINS
+        e.img AS Equipment_Image,
+        CASE 
+            WHEN COALESCE(TRIM(e.img), '') != '' THEN
+                CASE 
+                    WHEN e.img LIKE 'http%' THEN e.img
+                    WHEN e.img LIKE '/var/www/html/%' THEN REPLACE(TRIM(e.img), '/var/www/html/', 'http://192.168.1.72:8080/')
+                    ELSE CONCAT('http://192.168.1.72:8080/ATIeSR/api/uploads/', TRIM(e.img))
+                END
+            ELSE ''
+        END AS Equipment_ImageUrl,
+        
+        -- Defaults Current_Status to 1 if both derived statuses are NULL
+        COALESCE(oed.Status, oiu.Status, 1) AS Current_Status,
+
+        -- Returns 'Default' (or whatever source label you prefer) when defaulting to 1
+        CASE 
+            WHEN oed.Status IS NOT NULL THEN 'Outdoor'
+            WHEN oiu.Status IS NOT NULL THEN 'Indoor'
+            ELSE 'Default'
+        END AS Status_Source
+
+    FROM OINS e
+    INNER JOIN OCTR c ON c.ContractID = e.contract
+    
+    -- UPDATED: Join for Outdoor Units (Get max SRID mapped to the max OSCL.EndDate)
+    LEFT JOIN (
+        SELECT ed1.OutSerial, ed1.Status
+        FROM OSCL_EquipmentDetails ed1
+        INNER JOIN (
+            SELECT ed_a.OutSerial, MAX(ed_a.SRID) AS MaxSRID
+            FROM OSCL_EquipmentDetails ed_a
+            INNER JOIN OSCL o_a ON ed_a.SRID = o_a.SRID
+            INNER JOIN (
+                SELECT ed_b.OutSerial, MAX(o_b.EndDate) AS MaxEndDate
+                FROM OSCL_EquipmentDetails ed_b
+                INNER JOIN OSCL o_b ON ed_b.SRID = o_b.SRID
+                WHERE ed_b.OutSerial IS NOT NULL AND ed_b.OutSerial != ''
+                GROUP BY ed_b.OutSerial
+            ) max_dates ON ed_a.OutSerial = max_dates.OutSerial AND o_a.EndDate = max_dates.MaxEndDate
+            GROUP BY ed_a.OutSerial
+        ) ed2 ON ed1.OutSerial = ed2.OutSerial AND ed1.SRID = ed2.MaxSRID
+    ) oed ON e.manufSN = oed.OutSerial
+    
+    -- UPDATED: Join for Indoor Units (Get max IndoorUnitID mapped to the max OSCL.EndDate)
+    LEFT JOIN (
+        SELECT iu1.IndoorSerial, iu1.Status
+        FROM OSCL_IndoorUnits iu1
+        INNER JOIN (
+            SELECT iu_a.IndoorSerial, MAX(iu_a.IndoorUnitID) AS MaxID
+            FROM OSCL_IndoorUnits iu_a
+            INNER JOIN OSCL_EquipmentDetails ed_a ON iu_a.EquipmentID = ed_a.EquipmentID
+            INNER JOIN OSCL o_a ON ed_a.SRID = o_a.SRID
+            INNER JOIN (
+                SELECT iu_b.IndoorSerial, MAX(o_b.EndDate) AS MaxEndDate
+                FROM OSCL_IndoorUnits iu_b
+                INNER JOIN OSCL_EquipmentDetails ed_b ON iu_b.EquipmentID = ed_b.EquipmentID
+                INNER JOIN OSCL o_b ON ed_b.SRID = o_b.SRID
+                WHERE iu_b.IndoorSerial IS NOT NULL AND iu_b.IndoorSerial != ''
+                GROUP BY iu_b.IndoorSerial
+            ) max_dates ON iu_a.IndoorSerial = max_dates.IndoorSerial AND o_a.EndDate = max_dates.MaxEndDate
+            GROUP BY iu_a.IndoorSerial
+        ) iu2 ON iu1.IndoorSerial = iu2.IndoorSerial AND iu1.IndoorUnitID = iu2.MaxID
+    ) oiu ON e.internalSN = oiu.IndoorSerial
+    
+    WHERE e.customer = p_CardCode 
+      AND e.contract = 1
+    ORDER BY e.itemName ASC;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `GetEquipmentByCardCode5` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`ultimau5_jvmacuh`@`%` PROCEDURE `GetEquipmentByCardCode5`(
+    IN p_CardCode VARCHAR(15)
+)
+BEGIN
+    SELECT DISTINCT
+        e.insID,
+        e.itemCode,
+        e.itemName,
+        e.manufSN AS Manufacturer_Serial,
+        e.machine AS MRI_Machine,
+        e.internalSN AS Internal_Serial,
+        e.warranty AS Warranty_Type,
+        e.wrrntyStrt AS Warranty_Start,
+        e.wrrntyEnd AS Warranty_End,
+        e.contract AS Contract,
+        c.StartDate,
+        c.EndDate,
+        c.DocNum,
+        e.instLction AS Installation_Location,
+        
+        -- Equipment Image handling from OINS
+        e.img AS Equipment_Image,
+        CASE 
+            WHEN COALESCE(TRIM(e.img), '') != '' THEN
+                CASE 
+                    WHEN e.img LIKE 'http%' THEN e.img
+                    WHEN e.img LIKE '/var/www/html/%' THEN REPLACE(TRIM(e.img), '/var/www/html/', 'http://192.168.1.72:8080/')
+                    ELSE CONCAT('http://192.168.1.72:8080/ATIeSR/api/uploads/', TRIM(e.img))
+                END
+            ELSE ''
+        END AS Equipment_ImageUrl,
+        
+        -- Defaults Current_Status to 1 if both derived statuses are NULL
+        COALESCE(oed.Status, oiu.Status, 1) AS Current_Status,
+
+        -- Returns 'Default' (or whatever source label you prefer) when defaulting to 1
+        CASE 
+            WHEN oed.Status IS NOT NULL THEN 'Outdoor'
+            WHEN oiu.Status IS NOT NULL THEN 'Indoor'
+            ELSE 'Default'
+        END AS Status_Source
+
+    FROM OINS e
+    INNER JOIN OCTR c ON c.ContractID = e.contract
+    
+    -- UPDATED: Join for Outdoor Units (Gets Status tied directly to max OSCL.EndDate)
+    LEFT JOIN (
+        SELECT ed1.OutSerial, MAX(ed1.Status) AS Status
+        FROM OSCL_EquipmentDetails ed1
+        INNER JOIN OSCL o1 ON ed1.SRID = o1.SRID
+        INNER JOIN (
+            SELECT ed_b.OutSerial, MAX(o_b.EndDate) AS MaxEndDate
+            FROM OSCL_EquipmentDetails ed_b
+            INNER JOIN OSCL o_b ON ed_b.SRID = o_b.SRID
+            WHERE ed_b.OutSerial IS NOT NULL AND ed_b.OutSerial != ''
+            GROUP BY ed_b.OutSerial
+        ) max_dates ON ed1.OutSerial = max_dates.OutSerial AND o1.EndDate = max_dates.MaxEndDate
+        GROUP BY ed1.OutSerial
+    ) oed ON e.manufSN = oed.OutSerial
+    
+    -- UPDATED: Join for Indoor Units (Gets Status tied directly to max OSCL.EndDate)
+    LEFT JOIN (
+        SELECT iu1.IndoorSerial, MAX(iu1.Status) AS Status
+        FROM OSCL_IndoorUnits iu1
+        INNER JOIN OSCL_EquipmentDetails ed1 ON iu1.EquipmentID = ed1.EquipmentID
+        INNER JOIN OSCL o1 ON ed1.SRID = o1.SRID
+        INNER JOIN (
+            SELECT iu_b.IndoorSerial, MAX(o_b.EndDate) AS MaxEndDate
+            FROM OSCL_IndoorUnits iu_b
+            INNER JOIN OSCL_EquipmentDetails ed_b ON iu_b.EquipmentID = ed_b.EquipmentID
+            INNER JOIN OSCL o_b ON ed_b.SRID = o_b.SRID
+            WHERE iu_b.IndoorSerial IS NOT NULL AND iu_b.IndoorSerial != ''
+            GROUP BY iu_b.IndoorSerial
+        ) max_dates ON iu1.IndoorSerial = max_dates.IndoorSerial AND o1.EndDate = max_dates.MaxEndDate
+        GROUP BY iu1.IndoorSerial
+    ) oiu ON e.internalSN = oiu.IndoorSerial
+    
+    WHERE e.customer = p_CardCode 
+      AND e.contract = 1
+    ORDER BY e.itemName ASC;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `GetImagesBySRID` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -11908,13 +12228,28 @@ CREATE DEFINER=`ultimau5_jvmacuh`@`%` PROCEDURE `GetImagesBySRID`(
     IN p_srid INT
 )
 BEGIN
-    SELECT SRID, name,  path  FROM `ultimau5_atilive`.`IMGESR`
-WHERE imageID IN (
-    SELECT MAX(imageID) 
-    FROM `ultimau5_atilive`.`IMGESR` 
-    WHERE `SRID` = p_srid
-    GROUP BY `SRID`, `name`, `path`
-);
+    SELECT 
+        SRID, 
+        name,  
+        path,
+        -- Converts the local Linux directory path to an accessible HTTP URL
+        CASE 
+            WHEN COALESCE(TRIM(path), '') != '' THEN
+                CASE 
+                    WHEN path LIKE 'http%' THEN path
+                    WHEN path LIKE '/var/www/html/%' THEN REPLACE(TRIM(path), '/var/www/html/', 'http:///119.93.2.176:8080/')
+                    ELSE CONCAT('http:///119.93.2.176:8080/ATIeSR/api/uploads/', TRIM(path))
+                END
+            ELSE ''
+        END AS ImageUrl
+    FROM `ultimau5_atilive`.`IMGESR`
+    WHERE imageID IN (
+        -- Grouping exclusively by SRID guarantees exactly one max record is returned
+        SELECT MAX(imageID) 
+        FROM `ultimau5_atilive`.`IMGESR` 
+        WHERE `SRID` = p_srid
+        GROUP BY `SRID`
+    );
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -12550,25 +12885,34 @@ BEGIN
         CASE 
             WHEN a.ObjType = '2' THEN 'Purchase Order'
             ELSE 'Other'
-        END AS 'DocumentType', a.DocEntry,
+        END AS 'DocumentType', 
+        a.DocEntry,
         COALESCE(po.DocNum, CAST(a.DocEntry AS CHAR)) AS 'DocNumber',
-        COALESCE(bp.CardName, po.CardName) AS 'VendorName', --  Updated to grab master CardName from OCRD
+        COALESCE(bp.CardName, po.CardName) AS 'VendorName',
         po.DocTotal AS 'TotalAmount',
         po.DocCur AS 'Currency',
         CONCAT(u.FNAME, ' ', u.LNAME) AS 'Originator',
         
+        -- Approved approvers list
         (SELECT GROUP_CONCAT(CONCAT(u2.FNAME, ' ', u2.LNAME) SEPARATOR ', ')
          FROM WDD1 w1
          INNER JOIN USER u2 ON w1.UserID = u2.USER_ID
          WHERE w1.WddCode = a.WddCode AND w1.Status = 'Y') AS 'ApprovedByNames',
 
+        -- Pending approvers list (those who have not approved yet)
         (SELECT GROUP_CONCAT(CONCAT(u3.FNAME, ' ', u3.LNAME) SEPARATOR ', ')
          FROM WDD1 w2
          INNER JOIN USER u3 ON w2.UserID = u3.USER_ID
          WHERE w2.WddCode = a.WddCode AND w2.Status != 'Y') AS 'PendingApproverNames',
 
-        (SELECT COUNT(*) FROM WDD1 WHERE WddCode = a.WddCode) AS 'TotalNeeded',
-        (SELECT COUNT(*) FROM WDD1 WHERE WddCode = a.WddCode AND Status != 'Y') AS 'PendingCount',
+        -- Total approvals required (MaxReqr from OWDD, fallback to stage OWST.MaxReqr, or fallback to assigned count)
+        COALESCE(a.MaxReqr, st.MaxReqr, (SELECT COUNT(*) FROM WDD1 WHERE WddCode = a.WddCode), 1) AS 'TotalNeeded',
+
+        -- Remaining approvals needed to approve the document
+        GREATEST(0, 
+            COALESCE(a.MaxReqr, st.MaxReqr, (SELECT COUNT(*) FROM WDD1 WHERE WddCode = a.WddCode), 1) - 
+            (SELECT COUNT(*) FROM WDD1 WHERE WddCode = a.WddCode AND Status = 'Y')
+        ) AS 'PendingCount',
 
         a.Remarks AS 'DraftRemarks',
         CASE 
@@ -12584,21 +12928,20 @@ BEGIN
     LEFT JOIN 
         OPOR po ON a.DocEntry = po.DocEntry AND a.ObjType = '2'
     LEFT JOIN 
-        OCRD bp ON po.CardCode = bp.CardCode --  Added JOIN to Business Partner Master Data Table
+        OCRD bp ON po.CardCode = bp.CardCode
     LEFT JOIN 
         USER u ON po.UserSign = u.USER_ID
+    LEFT JOIN
+        OWST st ON a.CurrStep = st.WstCode
     WHERE 
-        -- Parentheses here are CRITICAL to stop 'Others' from appearing
         (
-            (p_FilterStatus = 'Pending' AND a.Status = 'W') OR
-            (p_FilterStatus = 'Approved' AND a.Status = 'Y') OR
-            (p_FilterStatus = 'Rejected' AND a.Status = 'N') OR
-            (p_FilterStatus = 'Request' AND a.Status = 'R') OR
+            ((p_FilterStatus = 'Pending' OR p_FilterStatus = 'W') AND a.Status = 'W') OR
+            ((p_FilterStatus = 'Approved' OR p_FilterStatus = 'Y') AND a.Status = 'Y') OR
+            ((p_FilterStatus = 'Rejected' OR p_FilterStatus = 'N') AND a.Status = 'N') OR
+            ((p_FilterStatus = 'Request' OR p_FilterStatus = 'R') AND a.Status = 'R') OR
             (p_FilterStatus = 'All' OR p_FilterStatus IS NULL OR p_FilterStatus = '')
         )
-        -- This AND now applies to EVERY condition inside the parentheses above
         AND a.ObjType = '2'
-        
     ORDER BY 
         a.CreateDate DESC, a.CreateTime DESC;
 END ;;
@@ -12644,7 +12987,8 @@ BEGIN
         -- Current Logged-in User's Line Decision
         user_wdd.Status AS 'MyDecisionStatus',
 
-        (SELECT COUNT(*) FROM WDD1 WHERE WddCode = ow.WddCode) AS 'RequiredApprovers',
+        -- Threshold: use MaxReqr rather than count of assigned users
+        COALESCE(ow.MaxReqr, (SELECT COUNT(*) FROM WDD1 WHERE WddCode = ow.WddCode), 1) AS 'RequiredApprovers',
         (SELECT COUNT(*) FROM WDD1 WHERE WddCode = ow.WddCode AND Status = 'Y') AS 'ApprovalsReceived',
         
         (SELECT GROUP_CONCAT(CONCAT(u.FNAME, ' ', u.LNAME) SEPARATOR ', ')
@@ -12659,31 +13003,31 @@ BEGIN
     INNER JOIN OCRD ON OCRD.CardCode = OPOR.CardCode
     LEFT JOIN USER creator ON OPOR.UserSign = creator.USER_ID
     LEFT JOIN OWDD ow ON OPOR.DocEntry = ow.DocEntry AND ow.ObjType = '2'
-    -- Join ONLY the current user's line to determine their view
     INNER JOIN WDD1 user_wdd ON ow.WddCode = user_wdd.WddCode AND user_wdd.UserID = p_UserID
     WHERE 
         -- 1. All records for this approver
         (p_WddStatus IS NULL OR p_WddStatus = '' OR p_WddStatus = 'All')
 
-        -- 2. Pending Filter: PO is only "Pending" for this user IF their own status is still 'W'
+        -- 2. Pending Filter: Only pending if user hasn't voted AND document itself is still pending
         OR (
             (p_WddStatus = 'W' OR p_WddStatus = 'Pending') 
             AND user_wdd.Status = 'W'
+            AND ow.Status = 'W'
         )
 
-        -- 3. Approved Filter: PO is "Approved" for this user if their own status is 'Y'
+        -- 3. Approved Filter: Show if user approved OR overall document reached approved threshold
         OR (
             (p_WddStatus = 'Y' OR p_WddStatus = 'Approved') 
-            AND user_wdd.Status = 'Y'
+            AND (user_wdd.Status = 'Y' OR ow.Status = 'Y')
         )
 
-        -- 4. Request Filter: PO is in "Request" for this user ONLY IF their own status is 'R'
+        -- 4. Request Filter: Only if clarification was requested
         OR (
             (p_WddStatus = 'R' OR p_WddStatus = 'Request') 
-            AND user_wdd.Status = 'R'
+            AND (user_wdd.Status = 'R' OR ow.Status = 'R')
         )
 
-        -- 5. Rejected Filter: PO is "Rejected" if user rejected it or header was killed
+        -- 5. Rejected Filter: Show if user rejected it OR overall document was rejected
         OR (
             (p_WddStatus = 'N' OR p_WddStatus = 'Rejected') 
             AND (user_wdd.Status = 'N' OR ow.Status = 'N')
@@ -12745,25 +13089,25 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`ultimau5_jvmacuh`@`%` PROCEDURE `GetPurchaseOrdersWithApprovalStatus`(
-    IN p_WddStatus VARCHAR(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin
+    IN p_WddStatus VARCHAR(20)
 )
 BEGIN
     SELECT 
-        OPOR.DocEntry,
-        OPOR.DocNum, 
-        OPOR.DocDate, 
-        OPOR.CardCode, 
-        OCRD.CardName,  
-        OPOR.DocTotal, 
+        po.DocEntry,
+        po.DocNum, 
+        po.DocDate, 
+        po.CardCode, 
+        COALESCE(bp.CardName, po.CardName) AS 'CardName',  
+        po.DocTotal, 
         CONCAT(creator.FNAME, ' ', creator.LNAME) AS 'CreatedBy',
         ow.WddCode AS 'ApprovalID',
         
         -- Global Document Approval Status
         CASE 
-            WHEN CAST(COALESCE(ow.Status, OPOR.WddStatus) AS CHAR) = 'W' THEN 'Pending'
-            WHEN CAST(COALESCE(ow.Status, OPOR.WddStatus) AS CHAR) = 'Y' THEN 'Approved'
-            WHEN CAST(COALESCE(ow.Status, OPOR.WddStatus) AS CHAR) = 'N' THEN 'Rejected'
-            WHEN CAST(COALESCE(ow.Status, OPOR.WddStatus) AS CHAR) = 'R' THEN 'Request'
+            WHEN ow.Status = 'W' THEN 'Pending'
+            WHEN ow.Status = 'Y' THEN 'Approved'
+            WHEN ow.Status = 'N' THEN 'Rejected'
+            WHEN ow.Status = 'R' THEN 'Request'
             ELSE 'Not Required'
         END AS 'ApprovalStatusLabel',
 
@@ -12779,39 +13123,24 @@ BEGIN
            AND CAST(w1.Status AS CHAR) != 'Y') AS 'PendingApprovers',
 
         ow.Remarks AS 'ApprovalRemarks',
-        OPOR.DocStatus
-    FROM OPOR 
-    INNER JOIN OCRD ON OCRD.CardCode = OPOR.CardCode
-    LEFT JOIN USER creator ON OPOR.UserSign = creator.USER_ID
-    LEFT JOIN OWDD ow ON OPOR.DocEntry = ow.DocEntry AND ow.ObjType = '2'
+        po.DocStatus
+    FROM OWDD ow
+    INNER JOIN OPOR po ON ow.DocEntry = po.DocEntry AND ow.ObjType = '2'
+    LEFT JOIN OCRD bp ON po.CardCode = bp.CardCode
+    LEFT JOIN USER creator ON po.UserSign = creator.USER_ID
     WHERE 
-        -- 1. All Documents
-        (p_WddStatus IS NULL OR p_WddStatus = '' OR p_WddStatus = 'All')
-
-        -- 2. Pending (Global header is 'W')
-        OR (
-            (p_WddStatus = 'W' OR p_WddStatus = 'Pending') 
-            AND CAST(COALESCE(ow.Status, OPOR.WddStatus) AS CHAR) = 'W'
+        (
+            (p_WddStatus = 'W' OR p_WddStatus = 'Pending') AND ow.Status = 'W'
+        ) OR (
+            (p_WddStatus = 'Y' OR p_WddStatus = 'Approved') AND ow.Status = 'Y'
+        ) OR (
+            (p_WddStatus = 'N' OR p_WddStatus = 'Rejected') AND ow.Status = 'N'
+        ) OR (
+            (p_WddStatus = 'R' OR p_WddStatus = 'Request') AND ow.Status = 'R'
+        ) OR (
+            p_WddStatus IS NULL OR p_WddStatus = '' OR p_WddStatus = 'All'
         )
-
-        -- 3. Approved (Global header is 'Y')
-        OR (
-            (p_WddStatus = 'Y' OR p_WddStatus = 'Approved') 
-            AND CAST(COALESCE(ow.Status, OPOR.WddStatus) AS CHAR) = 'Y'
-        )
-
-        -- 4. Rejected (Global header is 'N')
-        OR (
-            (p_WddStatus = 'N' OR p_WddStatus = 'Rejected') 
-            AND CAST(COALESCE(ow.Status, OPOR.WddStatus) AS CHAR) = 'N'
-        )
-
-        -- 5. Request / Clarification (Global header is 'R')
-        OR (
-            (p_WddStatus = 'R' OR p_WddStatus = 'Request') 
-            AND CAST(COALESCE(ow.Status, OPOR.WddStatus) AS CHAR) = 'R'
-        )
-    ORDER BY OPOR.DocEntry DESC;
+    ORDER BY ow.CreateDate DESC, ow.CreateTime DESC;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -13025,6 +13354,128 @@ BEGIN
     WHERE 
         o.customer = p_CardCode -- Filters results explicitly by the provided CardCode
     
+    ORDER BY 
+        o.SRID DESC;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `GetServiceReportsByCardCode78` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`ultimau5_jvmacuh`@`%` PROCEDURE `GetServiceReportsByCardCode78`(
+    IN p_CardCode VARCHAR(50)
+)
+BEGIN
+    SELECT 
+        o.SRID, 
+        o.subject, 
+        o.customer, 
+        o.custmrName, 
+        o.AddrName, 
+        o.contctCode, 
+        o.contractID, 
+        o.callType, 
+        o.createDate, 
+        o.createTime, 
+        o.insID, 
+        o.technician, 
+        o.StartDate, 
+        o.StartTime, 
+        o.EndDate, 
+        o.EndTime, 
+        o.Duration, 
+        o.signature1, 
+        o.signature2,
+        o.signature3,
+        o.acknowledgeby2, 
+        o.acknowledgeby3,
+        o.acknowledgeby, 
+        o.designation, 
+        o.designation2, 
+        o.designation3, 
+        o.signedDateTime,
+        o.technician2, 
+        o.technician3, 
+        o.technician4, 
+        o.driver_name, 
+        o.plate_no, 
+        o.servicesRendered,
+        c.Name AS ContactName, 
+        c.Address AS ContactAddress,
+        o.Status,
+        o.Remarks,
+        o.assignedby,
+        
+        -- Glues multiple parts needed into a single comma-separated list per SRID
+        COALESCE(eq_summary.PartsNeeded, '') AS PartsNeeded,
+        COALESCE(eq_summary.PartNeeded_ImageLink, '') AS PartNeeded_ImageLink,
+        
+        -- Clean string values returned to your Appsmith dashboard view 
+        COALESCE(tech_crew.LeadTechnicianName, '') AS LeadTechnicianName,
+        COALESCE(tech_crew.CrewSupportNames, '') AS CrewSupportNames,
+        COALESCE(tech_crew.LeadStatus, '') AS LeadJobStatus
+    FROM 
+        `ultimau5_atilive`.`OSCL` o
+    INNER JOIN 
+        `ultimau5_atilive`.`OCRD` r ON r.CardCode = o.customer 
+    LEFT JOIN 
+        `ultimau5_atilive`.`OCPR` c ON c.CntctCode = o.contctCode AND c.CardCode = o.customer
+
+    -- OPTIMIZED: Subquery safely aggregates ONLY equipment details for this specific customer
+    LEFT JOIN (
+        SELECT 
+            SRID,
+            GROUP_CONCAT(DISTINCT PartsNeeded SEPARATOR ', ') AS PartsNeeded,
+            GROUP_CONCAT(
+                DISTINCT CASE 
+                    WHEN PartNeeded_imagepath IS NOT NULL AND TRIM(PartNeeded_imagepath) != '' THEN
+                        CONCAT(
+                            '<a href="', 
+                            REPLACE(TRIM(PartNeeded_imagepath), '/var/www/html/ATIeSR/api/uploads/', 'http://192.168.1.72:8080/ATIeSR/api/uploads/'), 
+                            '" target="_blank" style="color: #0284c7; text-decoration: underline;">View Image</a>'
+                        )
+                    ELSE NULL
+                END SEPARATOR '<br/>'
+            ) AS PartNeeded_ImageLink
+        FROM `ultimau5_atilive`.`OSCL_EquipmentDetails`
+        -- This inner filter prevents the full table scan
+        WHERE SRID IN (SELECT SRID FROM `ultimau5_atilive`.`OSCL` WHERE customer = p_CardCode)
+        GROUP BY SRID
+    ) eq_summary ON eq_summary.SRID = o.SRID
+        
+    -- OPTIMIZED: Subquery safely aggregates ONLY technicians for this specific customer
+    LEFT JOIN (
+        SELECT 
+            t.SRID,
+            MAX(CASE WHEN t.IS_PRIMARY = 'Y' THEN CONCAT(tp.FIRST_NAME, ' ', tp.LAST_NAME) END) AS LeadTechnicianName,
+            MAX(CASE WHEN t.IS_PRIMARY = 'Y' THEN t.STATUS END) AS LeadStatus,
+            GROUP_CONCAT(
+                CASE WHEN t.IS_PRIMARY = 'N' THEN CONCAT(tp.FIRST_NAME, ' ', tp.LAST_NAME) END 
+                ORDER BY tp.FIRST_NAME ASC, tp.LAST_NAME ASC 
+                SEPARATOR ', '
+            ) AS CrewSupportNames
+        FROM 
+            `ultimau5_atilive`.`OSCL_TECHNICIAN` t
+        INNER JOIN 
+            `ultimau5_atilive`.`TECHNICIAN_PROFILE` tp ON t.TECH_ID = tp.TECH_ID
+        -- This inner filter prevents the full table scan
+        WHERE t.SRID IN (SELECT SRID FROM `ultimau5_atilive`.`OSCL` WHERE customer = p_CardCode)
+        GROUP BY 
+            t.SRID
+    ) tech_crew ON tech_crew.SRID = o.SRID
+
+    WHERE 
+        o.customer = p_CardCode    
     ORDER BY 
         o.SRID DESC;
 END ;;
@@ -14762,9 +15213,9 @@ BEGIN
     FROM WDD1
     WHERE WddCode = p_WddCode;
 
-    -- 2. Fetch the linked PO details and MaxReqr from OWST (fallback to OWDD or total assigned)
+    -- 2. Fetch the linked PO details and MaxReqr from OWST (fallback to OWDD or 1)
     SELECT 
-        COALESCE(st.MaxReqr, a.MaxReqr, v_TotalAssigned, 1),
+        COALESCE(st.MaxReqr, a.MaxReqr, 1),
         a.DocEntry,
         b.DocStatus 
     INTO 
@@ -14777,23 +15228,21 @@ BEGIN
     WHERE a.WddCode = p_WddCode
     LIMIT 1;
 
-    -- 3. Evaluate "AND" Rules (Precedence: Rejected > Request > Approved > Pending)
+    -- 3. Evaluate Rules (Precedence: Rejected > Clarification Request > Approved >= MaxReqr > Pending)
     IF v_RejectedCount > 0 THEN
-        -- Rule 1: ANY rejection immediately kills the document
+        -- Rule 1: ANY rejection immediately rejects the document
         SET v_TargetStatus = 'N';
 
     ELSEIF v_RequestCount > 0 THEN
         -- Rule 2: ANY clarification request halts progress globally
         SET v_TargetStatus = 'R';
 
-    ELSEIF v_TotalAssigned > 0 
-       AND v_ApprovedCount >= v_MaxReqr 
-       AND v_ApprovedCount = v_TotalAssigned THEN
-        -- Rule 3: ONLY approved when all assigned approvers sign off and meet MaxReqr
+    ELSEIF v_TotalAssigned > 0 AND v_ApprovedCount >= v_MaxReqr THEN
+        -- Rule 3: Approved as soon as approvals reach MaxReqr threshold
         SET v_TargetStatus = 'Y';
 
     ELSE
-        -- Rule 4: Waiting on the remaining approver(s)
+        -- Rule 4: Waiting on remaining approver(s)
         SET v_TargetStatus = 'W';
     END IF;
 
@@ -14824,44 +15273,51 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`ultimau5_jvmacuh`@`%` PROCEDURE `sp_SyncHeaderAndDoc_Active`(IN p_WddCode INT)
+CREATE DEFINER=`ultimau5_jvmacuh`@`%` PROCEDURE `sp_SyncHeaderAndDoc_Active`(
+    IN p_WddCode INT
+)
 BEGIN
-    DECLARE v_ApprovedCount INT;
-    DECLARE v_TotalNeeded INT;
-    DECLARE v_DocEntry INT;
-    DECLARE v_DocStatus INT;
+    DECLARE v_ApprovedCount INT DEFAULT 0;
+    DECLARE v_TotalNeeded INT DEFAULT 0;
+    DECLARE v_DocEntry INT DEFAULT NULL;
+    DECLARE v_DocStatus INT DEFAULT NULL;
 
-    SELECT 
+    -- Get the total number of approved and required approvers
+    SELECT
         COUNT(CASE WHEN Status = 'Y' THEN 1 END),
         COUNT(*)
     INTO v_ApprovedCount, v_TotalNeeded
     FROM WDD1
     WHERE WddCode = p_WddCode;
 
-    SELECT 
-        a.DocEntry, 
-        b.DocStatus 
+    -- Get the document details
+    SELECT
+        a.DocEntry,
+        b.DocStatus
     INTO v_DocEntry, v_DocStatus
     FROM OWDD a
-    INNER JOIN OPOR b ON a.DocEntry = b.DocEntry
+    INNER JOIN OPOR b
+        ON a.DocEntry = b.DocEntry
     WHERE a.WddCode = p_WddCode
     LIMIT 1;
 
-    IF v_ApprovedCount >= v_TotalNeeded 
-       AND v_TotalNeeded > 0 
+    -- Update only if all approvers have approved and the PO is still open
+    IF v_TotalNeeded > 0
+       AND v_ApprovedCount = v_TotalNeeded
        AND v_DocStatus = 0 THEN
 
-        UPDATE OWDD 
-        SET Status = 'Y' 
+        -- Update approval request status
+        UPDATE OWDD
+        SET Status = 'Y'
         WHERE WddCode = p_WddCode;
 
-        IF v_DocEntry IS NOT NULL THEN
-            UPDATE OPOR 
-            SET WddStatus = 'Y' 
-            WHERE DocEntry = v_DocEntry;
-        END IF;
+        -- Update purchase order status
+        UPDATE OPOR
+        SET WddStatus = 'Y'
+        WHERE DocEntry = v_DocEntry;
 
     END IF;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -15095,4 +15551,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-09-30 13:17:52
+-- Dump completed on 2026-10-02  8:22:41
